@@ -1,0 +1,6 @@
+{
+  "name": "Apis Atelier",
+  "description": "An elegant, artisanal sanctuary for managing beekeeping journals, tracking honey production, and showcasing raw, single-origin honey.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
