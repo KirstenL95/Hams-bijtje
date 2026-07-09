@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { JournalPost, Hive, HarvestRecord, HoneyProduct } from "../types";
 import { Compass, Thermometer, Calendar, X, Star, ArrowRight } from "lucide-react";
+import { IMAGES } from "../data/defaultData";
 
 interface HeroProps {
   currentTab: string;
@@ -150,7 +151,7 @@ export default function Hero({
         >
           <div className="w-full max-w-lg md:max-w-3xl bg-white rounded-[24px] border border-stone-200/60 shadow-xl overflow-hidden p-4 md:p-6 flex items-center justify-center hover:scale-[1.01] transition-transform duration-300">
             <img 
-              src="input_file_0.png" 
+              src={IMAGES.logo} 
               alt="Hams bijtje Logo" 
               referrerPolicy="no-referrer"
               className="w-full h-auto max-h-[420px] object-contain rounded-lg"
@@ -159,9 +160,6 @@ export default function Hero({
         </motion.div>
 
         <div className="space-y-4 max-w-2xl mx-auto">
-          <span className="text-[10px] md:text-xs tracking-[0.4em] font-mono font-bold text-amber-600 uppercase">
-            Onze trots & Identiteit
-          </span>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-stone-800 leading-tight font-light">
             Imkerij <span className="italic font-normal text-amber-600">Hams bijtje</span>
           </h2>

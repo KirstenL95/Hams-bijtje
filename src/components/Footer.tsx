@@ -5,6 +5,7 @@
 
 import React from "react";
 import { Instagram, Facebook, Mail, MapPin } from "lucide-react";
+import { IMAGES } from "../data/defaultData";
 
 interface FooterProps {
   setTab: (tab: string) => void;
@@ -30,7 +31,7 @@ export default function Footer({ setTab }: FooterProps) {
         <div className="md:col-span-5 space-y-4">
           <div className="flex items-center gap-2">
             <img 
-              src="input_file_0.png" 
+              src={IMAGES.logo} 
               alt="Hams bijtje Logo" 
               referrerPolicy="no-referrer"
               className="w-8 h-8 rounded-full object-cover border border-amber-500/30"

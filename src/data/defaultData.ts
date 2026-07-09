@@ -9,7 +9,8 @@ export const IMAGES = {
   hero: "/src/assets/images/dripping_honey_1783630101428.jpg",
   journalMain: "/src/assets/images/beekeeper_frame_1783630059715.jpg",
   productsCover: "/src/assets/images/honey_jars_1783630072899.jpg",
-  beehivesField: "/src/assets/images/beehives_field_1783630084420.jpg"
+  beehivesField: "/src/assets/images/beehives_field_1783630084420.jpg",
+  logo: "/src/assets/images/hams_bijtje_logo_1783639361660.jpg"
 };
 
 export const DEFAULT_HIVES: Hive[] = [
@@ -246,38 +247,26 @@ Once a critical quorum of scouts is reached at a single site, a signal ripples t
 export const DEFAULT_PRODUCTS: HoneyProduct[] = [
   {
     id: "prod-1",
-    name: "Wilde Bloemenhoning",
-    subtitle: "Een vloeibaar verslag van seizoen, bodem en zon.",
-    description: "Onze kenmerkende honing, met de hand koud geslingerd in kleine batches. Deze rauwe, pure honing weerspiegelt de diverse wilde bloemen die in de vroege zomer bloeien in onze weiden in Ham. Rijk, complex en heerlijk bloemig.",
-    size: "250g",
-    price: 12,
-    stock: 24,
-    image: "/src/assets/images/honey_jars_1783630072899.jpg",
-    nectarSources: ["Klaver", "Guldenroede", "Wilde Aster", "Framboos"],
-    notes: "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
-  },
-  {
-    id: "prod-2",
     name: "Lentehoning",
     subtitle: "Helder, verfijnd en tijdloos zoet.",
     description: "Geoogst uit onze kasten genesteld in de geurige witte klavervelden rond Ham. Deze honing is bijzonder licht van kleur en heeft een klassiek, delicaat zoet profiel. Perfect voor in de thee of over vers fruit.",
     size: "250g",
-    price: 10,
-    stock: 18,
+    price: 12,
+    stock: 24,
     image: "/src/assets/images/honey_jars_1783630072899.jpg",
     nectarSources: ["Witte Klaver", "Rode Klaver"],
     notes: "Fijne, zachte zoetheid met hints van verse weidekruiden en een milde vanille-ondertoon."
   },
   {
-    id: "prod-3",
-    name: "Donkere Boekweithoning",
-    subtitle: "Krachtig, moutig en rijk aan mineralen.",
-    description: "Een donkere, zeer robuuste honing geoogst in de nazomer van boekweitvelden. Bekend om zijn diepe, bijna melasse-achtige rijkdom en donkere amberkleur. Boordevol natuurlijke mineralen.",
+    id: "prod-2",
+    name: "Zomerhoning",
+    subtitle: "Een vloeibaar verslag van seizoen, bodem en zon.",
+    description: "Onze kenmerkende honing, met de hand koud geslingerd in kleine batches. Deze rauwe, pure honing weerspiegelt de diverse wilde bloemen die in de vroege zomer bloeien in onze weiden in Ham. Rijk, complex en heerlijk bloemig.",
     size: "250g",
-    price: 14,
-    stock: 12,
+    price: 10,
+    stock: 18,
     image: "/src/assets/images/honey_jars_1783630072899.jpg",
-    nectarSources: ["Boekweit", "Late Bosasters"],
-    notes: "Diep moutig, herinnerend aan bruine suiker, melasse en cacao, met een warme, kruidige afdronk."
+    nectarSources: ["Klaver", "Guldenroede", "Wilde Aster", "Framboos"],
+    notes: "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
   }
 ];

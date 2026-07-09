@@ -19,6 +19,7 @@ import {
   DEFAULT_HARVESTS,
   DEFAULT_JOURNAL,
   DEFAULT_PRODUCTS,
+  IMAGES,
 } from "./data/defaultData";
 
 // Components
@@ -150,7 +151,7 @@ export default function App() {
             className="flex items-center gap-2.5 text-stone-900"
           >
             <img 
-              src="input_file_0.png" 
+              src={IMAGES.logo} 
               alt="Hams bijtje Logo" 
               referrerPolicy="no-referrer"
               className="w-8 h-8 rounded-full object-cover border border-amber-500/30 shadow-sm"
