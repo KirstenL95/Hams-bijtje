@@ -71,6 +71,9 @@ export default function HarvestVault({
             <h2 className="font-serif text-3xl md:text-5xl text-stone-800 tracking-tight leading-none">
               Ons Honingaanbod
             </h2>
+            <p className="mt-4 text-stone-500 font-sans text-sm font-light max-w-xl leading-relaxed">
+              Eerste honingoogst zal plaatsvinden in 2027. Voor een potje honing kan je altijd even passeren langs de imkerij of een mailtje sturen voor meer info.
+            </p>
           </div>
 
           <div className="flex items-center gap-4 mt-6 md:mt-0">
@@ -88,45 +91,36 @@ export default function HarvestVault({
         </div>
 
         {/* Products Grid (matches Image 3 style!) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-12 justify-center">
           {displayProducts.map((prod) => (
             <div
               id={`product-card-${prod.id}`}
               key={prod.id}
-              className="group cursor-pointer flex flex-col justify-between h-full bg-transparent"
+              className="group flex flex-col justify-between h-full bg-transparent text-center"
             >
-              <div onClick={() => setSelectedProduct(prod)}>
+              <div>
                 {/* Product Image */}
-                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden mb-6 bg-stone-100 shadow-sm border border-stone-200/40">
+                <div className="relative aspect-square w-full max-w-[280px] mx-auto rounded-full overflow-hidden mb-6 bg-stone-100 shadow-sm border border-stone-200/40">
                   <img
                     src={prod.image}
                     alt={prod.name}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-102 transition-all duration-700"
+                    className="w-full h-full object-cover transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-all duration-300" />
+                  <div className="absolute inset-0 bg-black/5 transition-all duration-300" />
                 </div>
 
-                {/* Subtitle / Taxonomy */}
-                <p className="text-[9px] tracking-[0.25em] text-stone-400 uppercase font-mono mb-2">
-                  {prod.nectarSources.join(", ")} • {prod.size}
-                </p>
-
                 {/* Title */}
-                <h3 className="font-serif text-xl md:text-2xl text-stone-800 leading-tight mb-2 group-hover:text-gold-700 transition-colors">
+                <h3 className="font-serif text-xl md:text-2xl text-stone-800 leading-tight mb-2">
                   {prod.name}
                 </h3>
               </div>
 
-              {/* Action Button for layout structure */}
-              <div className="flex items-center justify-start mt-3 pt-4 border-t border-stone-200/40">
-                <button
-                  id={`btn-detail-add-${prod.id}`}
-                  onClick={() => setSelectedProduct(prod)}
-                  className="text-stone-500 hover:text-gold-600 text-xs font-semibold uppercase tracking-wider font-mono flex items-center gap-1 transition-colors"
-                >
-                  Bekijk Details & Smaaknotities <span className="font-sans">→</span>
-                </button>
+              {/* Action Button replaced with Coming Soon */}
+              <div className="flex items-center justify-center mt-3 pt-4 border-t border-stone-200/40">
+                <span className="text-[10px] tracking-[0.25em] font-mono text-amber-600 font-bold uppercase">
+                  Coming Soon 2027
+                </span>
               </div>
             </div>
           ))}

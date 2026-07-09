@@ -7,9 +7,9 @@ import { Hive, HiveInspection, HarvestRecord, JournalPost, HoneyProduct } from "
 
 export const IMAGES = {
   hero: "/src/assets/images/dripping_honey_1783630101428.jpg",
-  journalMain: "/src/assets/images/beekeeper_frame_1783630059715.jpg",
+  journalMain: "/src/assets/images/harvest_ritual_photo_1783640031633.jpg",
   productsCover: "/src/assets/images/honey_jars_1783630072899.jpg",
-  beehivesField: "/src/assets/images/beehives_field_1783630084420.jpg",
+  beehivesField: "/src/assets/images/hams_beehives_shelter_1783639900643.jpg",
   logo: "/src/assets/images/hams_bijtje_logo_1783639361660.jpg"
 };
 
@@ -208,7 +208,7 @@ Nearby cells were filled with pearly white, C-shaped larvae floating in royal je
     temp: "56°F",
     tag: "EARLY SPRING",
     nectarSource: "DANDELION & WILLOW",
-    image: "/src/assets/images/beehives_field_1783630084420.jpg" // Reuse beehives field
+    image: IMAGES.beehivesField
   },
   {
     id: "post-3",
@@ -253,7 +253,7 @@ export const DEFAULT_PRODUCTS: HoneyProduct[] = [
     size: "250g",
     price: 12,
     stock: 24,
-    image: "/src/assets/images/honey_jars_1783630072899.jpg",
+    image: "/src/assets/images/hams_bijtje_logo_1783639361660.jpg",
     nectarSources: ["Witte Klaver", "Rode Klaver"],
     notes: "Fijne, zachte zoetheid met hints van verse weidekruiden en een milde vanille-ondertoon."
   },
@@ -265,7 +265,7 @@ export const DEFAULT_PRODUCTS: HoneyProduct[] = [
     size: "250g",
     price: 10,
     stock: 18,
-    image: "/src/assets/images/honey_jars_1783630072899.jpg",
+    image: "/src/assets/images/hams_zomerhoning_label_1783640555779.jpg",
     nectarSources: ["Klaver", "Guldenroede", "Wilde Aster", "Framboos"],
     notes: "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
   }

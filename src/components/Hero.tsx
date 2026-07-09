@@ -149,12 +149,12 @@ export default function Hero({
           transition={{ duration: 0.8 }}
           className="flex-shrink-0 flex items-center justify-center w-full max-w-4xl"
         >
-          <div className="w-full max-w-lg md:max-w-3xl bg-white rounded-[24px] border border-stone-200/60 shadow-xl overflow-hidden p-4 md:p-6 flex items-center justify-center hover:scale-[1.01] transition-transform duration-300">
+          <div className="w-full max-w-[400px] bg-white rounded-full border border-stone-200/60 shadow-xl overflow-hidden p-4 md:p-6 aspect-square flex items-center justify-center hover:scale-[1.01] transition-transform duration-300 mx-auto">
             <img 
               src={IMAGES.logo} 
               alt="Hams bijtje Logo" 
               referrerPolicy="no-referrer"
-              className="w-full h-auto max-h-[420px] object-contain rounded-lg"
+              className="w-full h-full object-cover rounded-full"
             />
           </div>
         </motion.div>

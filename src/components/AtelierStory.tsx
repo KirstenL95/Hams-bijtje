@@ -6,7 +6,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { IMAGES } from "../data/defaultData";
-import { X, Heart, Wind, Compass } from "lucide-react";
+import { X } from "lucide-react";
 
 export default function AtelierStory() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,8 +21,7 @@ export default function AtelierStory() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg"
-            style={{ borderBottomRightRadius: "80px" }} // Elegant asymmetrical cut
+            className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-stone-200/50"
           >
             <img
               src={IMAGES.beehivesField}
@@ -39,16 +38,10 @@ export default function AtelierStory() {
             Onze Imkerij
           </p>
 
-          <h2 className="font-serif text-3xl md:text-5xl text-stone-800 tracking-tight leading-tight">
-            Het Erfgoed van de Kolonie, <br />
-            <span className="italic font-normal">Gebotteld</span>
+          <h2 className="font-serif text-2xl md:text-3.5xl text-stone-800 tracking-tight leading-relaxed font-light">
+            Onze imkerij gelegen in Oostham. <br />
+            <span className="italic font-normal text-amber-600">Voorlopig 2 kasten</span> gelegen in het groen tussen bloemenvelden en weide.
           </h2>
-
-          <p className="font-sans text-sm md:text-base text-stone-500 leading-relaxed font-light">
-            Gelegen tussen wilde bloemenvelden en oude bossen in Ham, verzorgt onze imkerij
-            twaalf bijenkolonies. We oogsten met de hand, slingeren in kleine
-            batches en verhitten onze honing nooit boven de kasttemperatuur.
-          </p>
 
           <div className="pt-4">
             <button
@@ -101,41 +94,10 @@ export default function AtelierStory() {
                 </button>
               </div>
 
-              {/* Story Grid info */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-xs">
-                <div className="p-4 bg-stone-50 rounded-2xl flex flex-col items-center space-y-2">
-                  <Heart className="text-gold-500" size={18} />
-                  <span className="font-semibold text-stone-800">Ethisch Beheer</span>
-                  <span className="text-stone-500 font-light leading-relaxed">
-                    We voeren nooit suikersiroop en oogsten nooit meer dan het overschot van de kolonie.
-                  </span>
-                </div>
-                <div className="p-4 bg-stone-50 rounded-2xl flex flex-col items-center space-y-2">
-                  <Wind className="text-gold-500" size={18} />
-                  <span className="font-semibold text-stone-800">Pure Koude Extractie</span>
-                  <span className="text-stone-500 font-light leading-relaxed">
-                    Koud geslingerd en grof gezeefd om de wilde stuifmeelkorrels te behouden.
-                  </span>
-                </div>
-                <div className="p-4 bg-stone-50 rounded-2xl flex flex-col items-center space-y-2">
-                  <Compass className="text-gold-500" size={18} />
-                  <span className="font-semibold text-stone-800">Eén Enkele Imkerij</span>
-                  <span className="text-stone-500 font-light leading-relaxed">
-                    Elke druppel is uitsluitend afkomstig van onze eigen biologische imkerij in Ham.
-                  </span>
-                </div>
-              </div>
-
               {/* Story prose */}
               <div className="space-y-4 text-stone-600 text-sm font-light leading-relaxed font-sans">
                 <p>
-                  Opgericht in 2019, begon Hams bijtje als een passievol herstelproject van natuurgebieden in Ham. Wat begon met twee bijenkasten is inmiddels uitgegroeid tot een bloeiende biologisch-dynamische imkerij van twaalf kolonies, harmonieus samenlevend met boomgaarden, wilde bloemenweiden en oude bossen.
-                </p>
-                <p>
-                  In tegenstelling tot industriële imkerijen die bijen louter als mobiele productie-eenheden behandelen, werken wij vanuit een diep gewortelde filosofie van wederzijds respect. We verplaatsen onze bijenkasten niet onnodig, knippen de vleugels van onze koninginnen niet en vermijden synthetische chemische behandelingen in de broedkamers.
-                </p>
-                <p>
-                  Onze honing is het vloeibare, gouden archief van dit unieke stuk land. We oogsten uitsluitend wat de bijen werkelijk kunnen missen, zodat ze in de winter volledig zelfvoorzienend blijven met hun eigen natuurlijke honing. Hartelijk dank voor uw steun aan duurzaam imkeren en ambachtelijke apicultuur.
+                  Hams bijtje is een kleinschalige en uiterst gepassioneerde hobby-imkerij gevestigd in Oostham. Met onze twee zorgvuldig beheerde bijenkasten, gelegen in een idyllische omgeving in het groen tussen de wilde bloemenvelden en weides, richten we ons op een pure en respectvolle omgang met de bijen.
                 </p>
               </div>
 
