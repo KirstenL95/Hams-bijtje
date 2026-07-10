@@ -10,7 +10,7 @@ export const IMAGES = {
   journalMain: "/src/assets/images/harvest_ritual_photo_1783640031633.jpg",
   productsCover: "/src/assets/images/honey_jars_1783630072899.jpg",
   beehivesField: "/src/assets/images/hams_beehives_shelter_1783639900643.jpg",
-  logo: "/src/assets/images/hams_bijtje_logo_1783639361660.jpg"
+  logo: "/src/assets/images/LogoHoning.jpg"
 };
 
 export const DEFAULT_HIVES: Hive[] = [
