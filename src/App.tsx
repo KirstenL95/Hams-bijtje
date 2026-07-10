@@ -35,22 +35,22 @@ export default function App() {
   // Load state from localStorage or fallback to defaults
   const [hives, setHives] = useState<Hive[]>(() => {
     const saved = localStorage.getItem("apis_hives");
-    return saved ? JSON.parse(saved) : DEFAULT_HIVES;
+    return DEFAULT_HIVES;
   });
 
   const [inspections, setInspections] = useState<HiveInspection[]>(() => {
     const saved = localStorage.getItem("apis_inspections");
-    return saved ? JSON.parse(saved) : DEFAULT_INSPECTIONS;
+    return DEFAULT_INSPECTIONS;
   });
 
   const [harvests, setHarvests] = useState<HarvestRecord[]>(() => {
     const saved = localStorage.getItem("apis_harvests");
-    return saved ? JSON.parse(saved) : DEFAULT_HARVESTS;
+    return DEFAULT_HARVESTS;
   });
 
   const [journalPosts, setJournalPosts] = useState<JournalPost[]>(() => {
     const saved = localStorage.getItem("apis_journal");
-    return saved ? JSON.parse(saved) : DEFAULT_JOURNAL;
+    return DEFAULT_JOURNAL;
   });
 
   const [products] = useState<HoneyProduct[]>(DEFAULT_PRODUCTS);

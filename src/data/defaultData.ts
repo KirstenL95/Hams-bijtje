@@ -177,7 +177,7 @@ export const DEFAULT_HARVESTS: HarvestRecord[] = [
 export const DEFAULT_JOURNAL: JournalPost[] = [
   {
     id: "post-1",
-    title: "Start-up imkerij: bijenhal",
+    title: "Start-up imkerij: bijenhal test",
     excerpt: "De imkerij is gelegen in een groene omgeving tussen gras en bloemenweide",
     content: `Hams bijtjearm the bees; it simply masks their alarm pheromones and encourages them to gorge on honey, calming their nerves before I gently enter their sanctuary.
 
@@ -186,7 +186,7 @@ Carefully lifting the outer lid of Hive A, 'The Alchemist', I'm met with a low, 
 The comb is a masterpiece. Flawless white wax caps, freshly secreted by the colony, seal a liquid vault of liquid sunlight. I brush a few lingering bees away with a soft bristle brush. Carrying the heavy frame to the extraction table, I slice the wax caps off with a hot knife, revealing the glistening honey beneath. Placing it into the manual centrifugal spinner, the extraction begins. It spins, and the sweet, amber-colored nectar flies against the stainless steel walls, draining into the settling tank below. 
 
 This batch is dense, sweet, and heavily perfumed with clover and wild raspberry. It's the physical legacy of early summer, bottled.`,
-    date: "Jul 9, 2026",
+    date: "Jul 10, 2026",
     temp: "81°F",
     tag: "MID SUMMER",
     nectarSource: "CLOVER & BASSWOOD",
