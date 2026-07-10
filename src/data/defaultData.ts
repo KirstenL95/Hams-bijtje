@@ -7,9 +7,9 @@ import { Hive, HiveInspection, HarvestRecord, JournalPost, HoneyProduct } from "
 
 export const IMAGES = {
   hero: "/src/assets/images/dripping_honey_1783630101428.jpg",
-  journalMain: "/src/assets/images/harvest_ritual_photo_1783640031633.jpg",
+  journalMain: "/src/assets/images/hive2.jpg",
   productsCover: "/src/assets/images/honey_jars_1783630072899.jpg",
-  beehivesField: "/src/assets/images/hams_beehives_shelter_1783639900643.jpg",
+  beehivesField: "/src/assets/images/hive.jpg",
   logo: "/src/assets/images/LogoHoning.jpg"
 };
 
@@ -177,9 +177,9 @@ export const DEFAULT_HARVESTS: HarvestRecord[] = [
 export const DEFAULT_JOURNAL: JournalPost[] = [
   {
     id: "post-1",
-    title: "Hands and Wax: The Harvest Ritual",
-    excerpt: "There is a ritual to the harvest that I never rush. The smoker is lit with dry burlap and pine needles — never too hot, never too much.",
-    content: `There is a ritual to the harvest that I never rush. The morning air is crisp, still smelling of dew and clover. I start by preparing the smoker — lighting dry burlap and tightly packed pine needles until they release a thick, cool, sweet-smelling smoke. This does not harm the bees; it simply masks their alarm pheromones and encourages them to gorge on honey, calming their nerves before I gently enter their sanctuary.
+    title: "Start-up imkerij: bijenhal",
+    excerpt: "De imkerij is gelegen in een groene omgeving tussen gras en bloemenweide",
+    content: `Hams bijtjearm the bees; it simply masks their alarm pheromones and encourages them to gorge on honey, calming their nerves before I gently enter their sanctuary.
 
 Carefully lifting the outer lid of Hive A, 'The Alchemist', I'm met with a low, vibrant hum — the sound of thirty thousand workers vibrating in harmony. The frames are heavy today. I slide a hive tool beneath the shoulders of a shallow honey super frame and pry it upward.
 
@@ -223,7 +223,7 @@ During today's inspection, I began preparing the hives for winter. I installed e
     temp: "68°F",
     tag: "LATE AUTUMN",
     nectarSource: "GOLDENROD & ASTER",
-    image: "/src/assets/images/honey_jars_1783630072899.jpg" // Reuse jars
+    image: "/src/assets/images/hive2.jpg" // Reuse jars
   },
   {
     id: "post-4",
@@ -240,20 +240,20 @@ Once a critical quorum of scouts is reached at a single site, a signal ripples t
     temp: "74°F",
     tag: "EARLY SUMMER",
     nectarSource: "APPLE BLOSSOM",
-    image: "/src/assets/images/beekeeper_frame_1783630059715.jpg" // Reuse beekeeper
+    image: "/src/assets/images/hive2.jpg" // Reuse beekeeper
   }
 ];
 
 export const DEFAULT_PRODUCTS: HoneyProduct[] = [
   {
     id: "prod-1",
-    name: "Lentehoning",
+    name: "",
     subtitle: "Helder, verfijnd en tijdloos zoet.",
     description: "Geoogst uit onze kasten genesteld in de geurige witte klavervelden rond Ham. Deze honing is bijzonder licht van kleur en heeft een klassiek, delicaat zoet profiel. Perfect voor in de thee of over vers fruit.",
     size: "250g",
     price: 12,
     stock: 24,
-    image: "/src/assets/images/hams_bijtje_logo_1783639361660.jpg",
+    image: "src/assets/images/LenteHoning.jpg",
     nectarSources: ["Witte Klaver", "Rode Klaver"],
     notes: "Fijne, zachte zoetheid met hints van verse weidekruiden en een milde vanille-ondertoon."
   },
@@ -265,7 +265,7 @@ export const DEFAULT_PRODUCTS: HoneyProduct[] = [
     size: "250g",
     price: 10,
     stock: 18,
-    image: "/src/assets/images/hams_zomerhoning_label_1783640555779.jpg",
+    image: "/src/assets/images/ZomerHoning.jpg",
     nectarSources: ["Klaver", "Guldenroede", "Wilde Aster", "Framboos"],
     notes: "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
   }

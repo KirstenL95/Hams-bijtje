@@ -76,18 +76,7 @@ export default function HarvestVault({
             </p>
           </div>
 
-          <div className="flex items-center gap-4 mt-6 md:mt-0">
-            {/* View All / Toggle */}
-            {isEmbed && onViewAll && (
-              <button
-                id="btn-view-all-shop"
-                onClick={onViewAll}
-                className="text-stone-500 hover:text-gold-600 text-xs tracking-widest uppercase font-mono transition-colors duration-300 flex items-center gap-2"
-              >
-                Alle Honing <span className="text-sm font-sans font-bold">→</span>
-              </button>
-            )}
-          </div>
+          
         </div>
 
         {/* Products Grid (matches Image 3 style!) */}
