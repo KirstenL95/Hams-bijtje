@@ -158,10 +158,7 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                 <div className="space-y-6">
                   {/* Metadata */}
                   <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-[11px] font-mono tracking-wider text-stone-500">
-                    <span className="flex items-center gap-1.5">
-                      <Compass size={13} className="text-gold-500" />
-                      {post.nectarSource}
-                    </span>
+                    
                     <span className="flex items-center gap-1.5">
                       <Thermometer size={13} className="text-gold-500" />
                       {post.temp}
@@ -308,9 +305,6 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                       {selectedPost.temp}
                     </span>
                   </div>
-                  <span className="px-3 py-1 bg-stone-100 text-stone-600 rounded-full text-[10px]">
-                    🌾 {selectedPost.nectarSource}
-                  </span>
                 </div>
 
                 {/* Content body */}

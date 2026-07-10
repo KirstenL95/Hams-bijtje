@@ -177,26 +177,20 @@ export const DEFAULT_HARVESTS: HarvestRecord[] = [
 export const DEFAULT_JOURNAL: JournalPost[] = [
   {
     id: "post-1",
-    title: "Start-up imkerij: bijenhal test",
+    title: "Start-up imkerij: bijenhal",
     excerpt: "De imkerij is gelegen in een groene omgeving tussen gras en bloemenweide",
-    content: `Hams bijtjearm the bees; it simply masks their alarm pheromones and encourages them to gorge on honey, calming their nerves before I gently enter their sanctuary.
-
-Carefully lifting the outer lid of Hive A, 'The Alchemist', I'm met with a low, vibrant hum — the sound of thirty thousand workers vibrating in harmony. The frames are heavy today. I slide a hive tool beneath the shoulders of a shallow honey super frame and pry it upward.
-
-The comb is a masterpiece. Flawless white wax caps, freshly secreted by the colony, seal a liquid vault of liquid sunlight. I brush a few lingering bees away with a soft bristle brush. Carrying the heavy frame to the extraction table, I slice the wax caps off with a hot knife, revealing the glistening honey beneath. Placing it into the manual centrifugal spinner, the extraction begins. It spins, and the sweet, amber-colored nectar flies against the stainless steel walls, draining into the settling tank below. 
-
-This batch is dense, sweet, and heavily perfumed with clover and wild raspberry. It's the physical legacy of early summer, bottled.`,
+    content: `Hams bijtje.`,
     date: "Jul 10, 2026",
-    temp: "81°F",
-    tag: "MID SUMMER",
+    temp: "31°C",
+    tag: "ZOMER",
     nectarSource: "CLOVER & BASSWOOD",
     image: IMAGES.journalMain,
     isFeatured: true
   },
   {
     id: "post-2",
-    title: "The Spring Awakening: First Inspections",
-    excerpt: "Lifting the lids after a long Vermont winter is always filled with nervous anticipation. Today, we heard the first joyful hum of spring.",
+    title: "Inspectie bijen",
+    excerpt: "Gezondheid van de kast en zwermdrift in de kast wordt nagekeken.",
     content: `Lifting the lids after a long Vermont winter is always filled with nervous anticipation. Winter is a crucible for any apiary, and colony survival depends on a tight cluster, proper moisture management, and sufficient winter honey reserves.
 
 Today, as temperatures crossed a beautiful 56°F under a clear blue sky, I stepped into the apiary. Outside Hive B, workers were already darting into the sunshine, carrying small pellets of bright yellow pollen on their hind legs. A spectacular sight! This means the queen is laying and active brood rearing has begun.
@@ -205,8 +199,8 @@ I cracked open the inner cover of Hive B. A warm, healthy odor of beeswax, honey
 
 Nearby cells were filled with pearly white, C-shaped larvae floating in royal jelly, surrounded by an outer ring of pollen (bee bread) and capped honey. The winter cluster had done its job. We survived the winter with zero colony losses. The season has officially begun.`,
     date: "Apr 28, 2026",
-    temp: "56°F",
-    tag: "EARLY SPRING",
+    temp: "31°C",
+    tag: "ZOMER",
     nectarSource: "DANDELION & WILLOW",
     image: IMAGES.beehivesField
   },
