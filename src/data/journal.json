@@ -26,7 +26,7 @@
       "id": "post-3",
       "title": "Drukte aan de kast ",
       "excerpt": "Zomerdrukte",
-      "content": "In juli heerst er een drukte van jewelste aan de bijenhal. Bij mooi weer vliegen de honingbijen massaal uit op zoek naar nectar en stuifmeel om hun volk te voeden. Deze periode is van levensbelang voor de ontwikkeling van het bijenvolk.\n\nMaar er loert gevaar. Ook de Aziatische hoornaar bereikt in deze periode haar hoogste activiteit. Ze jaagt op honingbijen, grijpt ze uit de lucht en brengt ze naar haar nest als voedsel voor de larven. Daarom is het belangrijk om de bijenvolken in deze maanden extra te beschermen en de Aziatische hoornaar gericht te bestrijden.",
+      "content": "In juli heerst er een drukte van jewelste aan de bijenhal. Bij mooi weer vliegen de honingbijen massaal uit op zoek naar nectar en stuifmeel. Deze periode is cruciaal: de bijen leggen nu de voedselvoorraden aan die hen door de winter moeten helpen en brengen de gezonde winterbijen voort die het volk tot in het voorjaar in leven houden.\n\nMaar er loert ook gevaar. Juist in deze periode bereikt de Aziatische hoornaar haar hoogste activiteit. Ze jaagt op honingbijen, grijpt ze uit de lucht en brengt ze naar haar nest als voedsel voor haar larven. Door deze voortdurende predatie kunnen bijenvolken minder voedsel verzamelen en raken ze verzwakt, waardoor ze met onvoldoende wintervoorraden en een kleinere populatie winterbijen de winter ingaan.\n\nDaarom is het belangrijk om de bijenvolken in deze maanden extra te beschermen en de Aziatische hoornaar gericht te bestrijden. Zo krijgen de bijen de kans om voldoende reserves op te bouwen en sterk de winter in te gaan.",
       "date": "Jul 10, 2026",
       "temp": "32 °C",
       "tag": "ZOMER",
@@ -42,30 +42,40 @@
       "temp": "31°C",
       "tag": "ZOMER",
       "nectarSource": "APPLE BLOSSOM",
-      "images": ["hoornaar", "Hoornaar1","Hoornaar2"]
+      "images": [
+        "hoornaar",
+        "Hoornaar1",
+        "Hoornaar2"
+      ]
     },
     {
       "id": "post-4",
       "title": "Aziatische hoornaarval te verkrijgen @Hams bijtje",
       "excerpt": "Aziatische hoornaarvallen",
-      "content": "Wil je zelf ook biijdragen aan het behoud en de beschrimng van de honingbij. Help dan mee deze invasieve exoot te bestrijden. Vallen zijn te verkrijgen @Hams bijtje.",
+      "content": "Wil je zelf ook bijdragen aan het behoud en de bescherming van de honingbij? Help dan mee om de invasieve Aziatische hoornaar te bestrijden. Vallen zijn verkrijgbaar bij Hams Bijtje.",
       "date": "Jul 8, 2026",
       "temp": "30°C",
       "tag": "ZOMER",
       "nectarSource": "APPLE BLOSSOM",
-      "images": ["hoornaarval_voorkant", "hoornaarval_zijkant"],
+      "images": [
+        "hoornaarval_voorkant",
+        "hoornaarval_zijkant"
+      ],
       "isFeatured": true
     },
     {
       "id": "post-4",
-      "title": "Aziatische hoornaarval te verkrijgen @Hams bijtje",
-      "excerpt": "aziatische hoornaarvallen",
-      "content": "Wil je zelf ook biijdragen aan het behoud en de beschrimng van de honingbij. Help dan mee deze invasieve exoot te bestrijden. Vallen zijn te verkrijgen @Hams bijtje.",
+      "title": "Warm weer? Ook onze bijen zoeken verkoeling!",
+      "excerpt": "Verkoeling aan de lokale vijver",
+      "content": "Op warme zomerdagen hebben honingbijen veel water nodig. Vandaag werden onze bijen gespot aan een lokale vijver, waar ze handig op een lelieblad landden om veilig water te verzamelen. Met kleine druppeltjes vliegen ze vervolgens terug naar de bijenkast.\n\nDat water is van levensbelang. De bijen gebruiken het niet alleen om zelf te drinken, maar ook om hun kast af te koelen. Ze verspreiden de waterdruppels in de kast en ventileren met hun vleugels, waardoor het water verdampt en de temperatuur rond de 35 °C blijft. Die constante temperatuur is essentieel voor de ontwikkeling van het broed.\n\nEen prachtig staaltje teamwork en een indrukwekkend voorbeeld van de ingenieuze manier waarop honingbijen zich aanpassen aan warme zomerdagen.",
       "date": "Jul 11 2026",
-      "temp": "30°C",
+      "temp": "32°C",
       "tag": "ZOMER",
       "nectarSource": "APPLE BLOSSOM",
-      "images": ["hoornaarval_voorkant", "hoornaarval_zijkant"],
+      "images": [
+        "drinken1",
+        "drinken2"
+      ],
       "isFeatured": true
     }
   ]
