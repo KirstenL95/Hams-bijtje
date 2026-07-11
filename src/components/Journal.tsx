@@ -418,18 +418,6 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
 
               {/* Footer */}
               <div className="p-6 border-t border-stone-100 bg-white flex justify-end gap-3">
-                {isOwnerView && (
-                  <button
-                    id="btn-edit-journal-footer"
-                    onClick={() => {
-                      setSelectedPost(null);
-                      openWriteModal(selectedPost);
-                    }}
-                    className="px-6 py-2 bg-gold-600 hover:bg-gold-500 text-stone-900 rounded-full font-medium text-xs tracking-wider uppercase transition-colors"
-                  >
-                    Bewerk Bericht
-                  </button>
-                )}
                 <button
                   id="btn-close-journal-footer"
                   onClick={() => setSelectedPost(null)}
