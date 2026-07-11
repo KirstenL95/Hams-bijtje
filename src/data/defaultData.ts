@@ -5,9 +5,9 @@
 
 import { Hive, HiveInspection, HarvestRecord, JournalPost, HoneyProduct } from "../types";
 
-import hero from "../assets/images/dripping_honey_1783630101428.jpg";
+import hero from "../assets/images/rectangle2.jpg";
 import journalMain from "../assets/images/hive2.jpg";
-import productsCover from "../assets/images/honey_jars_1783630072899.jpg";
+import productsCover from "../assets/images/rectangle2.jpg";
 import beehivesField from "../assets/images/hive.jpg";
 import logo from "../assets/images/rectangle2.jpg";
 
