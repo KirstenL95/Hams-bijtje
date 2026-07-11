@@ -82,8 +82,8 @@ export default function HarvestVault({
   const [newProdSubtitle, setNewProdSubtitle] = useState("");
   const [newProdDesc, setNewProdDesc] = useState("");
   const [newProdSize, setNewProdSize] = useState("");
-  const [newProdPrice, setNewProdPrice] = useState<number | "">("");
-  const [newProdStock, setNewProdStock] = useState<number | "">("");
+  const [newProdPrice, setNewProdPrice] = useState<number | null>(null);
+  const [newProdStock, setNewProdStock] = useState<number | null>(null);
   const [newProdImage, setNewProdImage] = useState<string | null>(null);
 
   const handleNewProductImage = async (file: File | null) => {
@@ -101,8 +101,6 @@ export default function HarvestVault({
       subtitle: newProdSubtitle,
       description: newProdDesc,
       size: newProdSize || "250g",
-      price: typeof newProdPrice === "number" ? newProdPrice : Number(newProdPrice),
-      stock: typeof newProdStock === "number" ? newProdStock : Number(newProdStock),
       image: newProdImage || "/src/assets/images/ZomerHoning.jpg",
       nectarSources: [],
       notes: "",

@@ -262,5 +262,17 @@ export const DEFAULT_PRODUCTS: HoneyProduct[] = [
     image: "/src/assets/images/ZomerHoning.jpg",
     nectarSources: ["Klaver", "Guldenroede", "Wilde Aster", "Framboos"],
     notes: "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
+  },
+  {
+    id: "prod-3",
+    name: "Aziatische hoornaar val",
+    subtitle: "Help het bestrijden van de aziatische hoornaar, te verkrijgen bij ons.",
+    description: "Onze kenmerkende honing, met de hand koud geslingerd in kleine batches. Deze rauwe, pure honing weerspiegelt de diverse wilde bloemen die in de vroege zomer bloeien in onze weiden in Ham. Rijk, complex en heerlijk bloemig.",
+    size: "250g",
+    price: 10,
+    stock: 18,
+    image: "/src/assets/images/ZomerHoning.jpg",
+    nectarSources: ["Klaver", "Guldenroede", "Wilde Aster", "Framboos"],
+    notes: "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
   }
 ];
