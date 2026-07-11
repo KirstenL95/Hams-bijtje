@@ -64,7 +64,7 @@ export default function Footer({ setTab }: FooterProps) {
                 onClick={handleScrollToAtelier}
                 className="hover:text-gold-500 transition-colors text-left"
               >
-                Onze imkerij
+                De imkerij
               </button>
             </li>
             <li>

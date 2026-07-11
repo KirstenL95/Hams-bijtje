@@ -131,7 +131,7 @@ export default function Hero({
               onClick={handleScrollToAtelier}
               className="px-4 py-2 rounded-full text-[10px] md:text-[11px] font-bold tracking-widest uppercase transition-all text-stone-300 hover:text-white"
             >
-              Onze imkerij
+              De imkerij
             </button>
             <button
               id="pill-nav-journal"

@@ -833,7 +833,7 @@ export default function HarvestVault({
                       Referentie: <span className="font-mono font-bold text-stone-800">HB-RES-{Math.floor(1000 + Math.random() * 9000)}</span>
                     </p>
                     <p className="leading-relaxed mt-1">
-                      Onze imker neemt spoedig contact met je op om de verpakking en levering af te stemmen.
+                      De imker neemt spoedig contact met je op om de verpakking en levering af te stemmen.
                     </p>
                   </div>
 

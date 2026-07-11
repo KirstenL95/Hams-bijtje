@@ -73,7 +73,7 @@ export default function AtelierStory() {
             >
               <img
                 src={extraImage}
-                alt="Extra foto van Onze Imkerij"
+                alt="Extra foto van de Imkerij"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
@@ -84,11 +84,11 @@ export default function AtelierStory() {
         {/* Right text details */}
         <div className="col-span-12 lg:col-span-6 space-y-6 lg:pl-6">
           <p className="text-[10px] tracking-[0.4em] text-gold-600 uppercase font-mono">
-            Onze Imkerij
+            De Imkerij
           </p>
 
           <h2 className="font-serif text-2xl md:text-3.5xl text-stone-800 tracking-tight leading-relaxed font-light">
-            Onze imkerij gelegen in Oostham. <br />
+            De imkerij gelegen in Oostham. <br />
             <span className="italic font-normal text-amber-600"></span> Gelegen in het groen tussen bloemenvelden en weide.
           </h2>
 
@@ -128,7 +128,7 @@ export default function AtelierStory() {
               <div className="flex justify-between items-start border-b border-stone-100 pb-6">
                 <div>
                   <span className="text-[10px] tracking-[0.3em] text-gold-600 uppercase font-mono font-semibold">
-                    Onze Wortels & Filosofie
+                    Wortels & Filosofie
                   </span>
                   <h3 className="font-serif text-2xl md:text-3xl text-stone-800 mt-2">
                     Het Verhaal van Hams bijtje
@@ -146,7 +146,7 @@ export default function AtelierStory() {
               {/* Story prose */}
               <div className="space-y-4 text-stone-600 text-sm font-light leading-relaxed font-sans">
                 <p>
-                  Hams Bijtje is een kleinschalige hobby-imkerij in Oostham, waar passie voor bijen en respect voor de natuur centraal staan. Onze bijenkasten staan midden in het groen, tussen wilde bloemen en weides, waar de bijen in alle rust kunnen floreren.
+                  Hams Bijtje is een kleinschalige hobby-imkerij in Oostham, waar passie voor bijen en respect voor de natuur centraal staan. De bijenkasten staan midden in het groen, tussen wilde bloemen en weides, waar de bijen in alle rust kunnen floreren.
                 </p>
               </div>
 

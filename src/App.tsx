@@ -329,7 +329,7 @@ export default function App() {
           >
             {[
               { id: "home", label: "Home" },
-              { id: "atelier", label: "Onze imkerij" },
+              { id: "atelier", label: "De imkerij" },
               { id: "journal", label: "Logboek" },
               { id: "vault", label: "Honingaanbod" },
             ].map((item) => (
