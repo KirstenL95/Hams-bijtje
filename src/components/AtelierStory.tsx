@@ -146,7 +146,7 @@ export default function AtelierStory() {
               {/* Story prose */}
               <div className="space-y-4 text-stone-600 text-sm font-light leading-relaxed font-sans">
                 <p>
-                  Hams bijtje is een kleinschalige en uiterst gepassioneerde hobby-imkerij gevestigd in Oostham. Met onze zorgvuldig beheerde bijenkasten, gelegen in een idyllische omgeving in het groen tussen de wilde bloemenvelden en weides, richten we ons op een pure en respectvolle omgang met de bijen.
+                  Hams Bijtje is een kleinschalige hobby-imkerij in Oostham, waar passie voor bijen en respect voor de natuur centraal staan. Onze bijenkasten staan midden in het groen, tussen wilde bloemen en weides, waar de bijen in alle rust kunnen floreren.
                 </p>
               </div>
 
