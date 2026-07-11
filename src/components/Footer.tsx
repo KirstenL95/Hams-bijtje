@@ -106,7 +106,7 @@ export default function Footer({ setTab }: FooterProps) {
             </a>
             <a
               id="social-mail"
-              href="mailto:kleeten6@gmail.com"
+              href="mailto:hamsbijtje@gmail.com"
               className="inline-flex items-center gap-2 rounded-full border border-stone-800 bg-stone-900 px-3 py-2 text-[11px] font-medium uppercase tracking-wider text-gold-100 transition-colors hover:bg-stone-800"
             >
               <Mail size={14} />

@@ -216,7 +216,7 @@ export default function HarvestVault({
               {/* Action Button replaced with Coming Soon */}
               <div className="flex items-center justify-center mt-3 pt-4 border-t border-stone-200/40">
                 <span className="text-sm md:text-base tracking-[0.3em] font-mono text-amber-600 font-bold uppercase">
-                  {ownerBadge}
+                  {prod.subtitle}
                 </span>
               </div>
             </div>

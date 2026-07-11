@@ -1,53 +1,53 @@
 {
-    "products": [
-        {
-            "id": "prod-1",
-            "name": "Lentehoning",
-            "subtitle": "Helder, verfijnd en tijdloos zoet.",
-            "description": "Geoogst uit onze kasten genesteld in de geurige witte klavervelden rond Ham. Deze honing is bijzonder licht van kleur en heeft een klassiek, delicaat zoet profiel. Perfect voor in de thee of over vers fruit.",
-            "size": "250g",
-            "price": 12,
-            "stock": 24,
-            "image": "logo_lentehoning",
-            "nectarSources": [
-                "Witte Klaver",
-                "Rode Klaver"
-            ],
-            "notes": "Fijne, zachte zoetheid met hints van verse weidekruiden en een milde vanille-ondertoon."
-        },
-        {
-            "id": "prod-2",
-            "name": "Zomerhoning",
-            "subtitle": "Een vloeibaar verslag van seizoen, bodem en zon.",
-            "description": "Onze kenmerkende honing, met de hand koud geslingerd in kleine batches. Deze rauwe, pure honing weerspiegelt de diverse wilde bloemen die in de vroege zomer bloeien in onze weiden in Ham. Rijk, complex en heerlijk bloemig.",
-            "size": "250g",
-            "price": 10,
-            "stock": 18,
-            "image": "logo_zomerhoning",
-            "nectarSources": [
-                "Klaver",
-                "Guldenroede",
-                "Wilde Aster",
-                "Framboos"
-            ],
-            "notes": "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
-        },
-        {
-            "id": "prod-3",
-            "name": "Aziatische hoornaar val",
-            "subtitle": "Help het bestrijden van de aziatische hoornaar, te verkrijgen bij ons.",
-            "description": "Onze kenmerkende honing, met de hand koud geslingerd in kleine batches. Deze rauwe, pure honing weerspiegelt de diverse wilde bloemen die in de vroege zomer bloeien in onze weiden in Ham. Rijk, complex en heerlijk bloemig.",
-            "size": "250g",
-            "price": 10,
-            "stock": 18,
-            "image": "hoornaarval_zijkant",
-            "nectarSources": [
-                "Klaver",
-                "Guldenroede",
-                "Wilde Aster",
-                "Framboos"
-            ],
-            "notes": "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
-        }
-    ]
+  "products": [
+    {
+      "id": "prod-1",
+      "name": "Lentehoning",
+      "subtitle": "COMING SOON 2027",
+      "description": "COMING SOON 2027",
+      "size": "250g",
+      "price": 12,
+      "stock": 24,
+      "image": "logo_lentehoning",
+      "nectarSources": [
+        "Witte Klaver",
+        "Rode Klaver"
+      ],
+      "notes": "COMING SOON 2027"
+    },
+    {
+      "id": "prod-2",
+      "name": "Zomerhoning",
+      "subtitle": "COMING SOON 2027",
+      "description": "Onze kenmerkende honing, met de hand koud geslingerd in kleine batches. Deze rauwe, pure honing weerspiegelt de diverse wilde bloemen die in de vroege zomer bloeien in onze weiden in Ham. Rijk, complex en heerlijk bloemig.",
+      "size": "250g",
+      "price": 10,
+      "stock": 18,
+      "image": "logo_zomerhoning",
+      "nectarSources": [
+        "Klaver",
+        "Guldenroede",
+        "Wilde Aster",
+        "Framboos"
+      ],
+      "notes": "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
+    },
+    {
+      "id": "prod-3",
+      "name": "Aziatische hoornaarval",
+      "subtitle": "Help het bestrijden van de aziatische hoornaar, te verkrijgen @Hams bijtje ",
+      "description": "Onze kenmerkende honing, met de hand koud geslingerd in kleine batches. Deze rauwe, pure honing weerspiegelt de diverse wilde bloemen die in de vroege zomer bloeien in onze weiden in Ham. Rijk, complex en heerlijk bloemig.",
+      "size": "250g",
+      "price": 10,
+      "stock": 18,
+      "image": "hoornaarval_zijkant",
+      "nectarSources": [
+        "Klaver",
+        "Guldenroede",
+        "Wilde Aster",
+        "Framboos"
+      ],
+      "notes": "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
+    }
+  ]
 }
