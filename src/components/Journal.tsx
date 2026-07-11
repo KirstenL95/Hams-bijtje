@@ -178,7 +178,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
   };
 
   return (
-    <section id="journal-section" className="py-24 bg-white px-6">
+    <section id="journal-section" className="py-24 bg-stone-50 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-stone-100 pb-8">
