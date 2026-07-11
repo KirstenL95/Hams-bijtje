@@ -5,12 +5,18 @@
 
 import { Hive, HiveInspection, HarvestRecord, JournalPost, HoneyProduct } from "../types";
 
+import hero from "../assets/images/dripping_honey_1783630101428.jpg";
+import journalMain from "../assets/images/hive2.jpg";
+import productsCover from "../assets/images/honey_jars_1783630072899.jpg";
+import beehivesField from "../assets/images/hive.jpg";
+import logo from "../assets/images/rectangle2.jpg";
+
 export const IMAGES = {
-  hero: "/src/assets/images/dripping_honey_1783630101428.jpg",
-  journalMain: "/src/assets/images/hive2.jpg",
-  productsCover: "/src/assets/images/honey_jars_1783630072899.jpg",
-  beehivesField: "/src/assets/images/hive.jpg",
-  logo: "/src/assets/images/rectangle2.jpg"
+  hero,
+  journalMain,
+  productsCover,
+  beehivesField,
+  logo
 };
 
 export const DEFAULT_HIVES: Hive[] = [
