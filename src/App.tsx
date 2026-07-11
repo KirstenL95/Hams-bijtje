@@ -33,6 +33,7 @@ export default function App() {
   const [tab, setTab] = useState<string>("home");
 
   const readStoredState = <T,>(key: string, fallback: T): T => {
+    return fallback;
     if (typeof window === "undefined") return fallback;
     const saved = window.localStorage.getItem(key);
     if (!saved) return fallback;
@@ -210,7 +211,7 @@ export default function App() {
             className="flex items-center gap-2.5 text-stone-900"
           >
             <img 
-              src={IMAGES.logo} 
+              src={IMAGES.logo_rechthoek} 
               alt="Hams bijtje Logo" 
               referrerPolicy="no-referrer"
               className="w-8 h-8 rounded-full object-cover border border-amber-500/30 shadow-sm"

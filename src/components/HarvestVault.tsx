@@ -9,6 +9,7 @@ import { HoneyProduct, CartItem } from "../types";
 import { ShoppingCart, ShoppingBag, X, Plus, Minus, Send, CheckCircle2, Star, Sparkles, PenTool } from "lucide-react";
 import DecorativeBee from "./DecorativeBee";
 import { isOwnerHost } from "../utils/owner";
+import { IMAGES } from "../data/defaultData";
 
 const fileToDataUrl = (file: File) =>
   new Promise<string>((resolve, reject) => {
@@ -184,26 +185,6 @@ export default function HarvestVault({
               {ownerDescription}
             </p>
           </div>
-
-          {isOwnerView && (
-            <button
-              id="btn-edit-collection"
-              onClick={() => setIsOwnerEditorOpen(true)}
-              className="mt-6 md:mt-0 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-gold-100 font-medium text-xs tracking-wider uppercase rounded-full transition-all duration-300 flex items-center gap-2 border border-stone-800 shadow-md"
-            >
-              <PenTool size={14} className="text-gold-500" />
-              Pas Collectie Aan
-            </button>
-          )}
-          {isOwnerView && (
-            <button
-              id="btn-add-product"
-              onClick={() => setIsAddProductOpen(true)}
-              className="mt-6 md:mt-0 ml-3 px-5 py-2.5 bg-gold-600 hover:bg-gold-500 text-stone-900 font-medium text-xs tracking-wider uppercase rounded-full transition-all duration-300 flex items-center gap-2 border border-amber-700 shadow-md"
-            >
-              Voeg Product Toe
-            </button>
-          )}
         </div>
 
         {/* Products Grid (matches Image 3 style!) */}
@@ -218,7 +199,7 @@ export default function HarvestVault({
                 {/* Product Image */}
                 <div className="relative aspect-square w-full max-w-[280px] mx-auto rounded-full overflow-hidden mb-6 bg-stone-100 shadow-sm border border-stone-200/40">
                   <img
-                    src={prod.image}
+                    src={IMAGES[prod.image]}
                     alt={prod.name}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-all duration-700"

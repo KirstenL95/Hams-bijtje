@@ -31,7 +31,7 @@ export default function Footer({ setTab }: FooterProps) {
         <div className="md:col-span-5 space-y-4">
           <div className="flex items-center gap-2">
             <img 
-              src={IMAGES.logo} 
+              src={IMAGES.logo_rechthoek} 
               alt="Hams bijtje Logo" 
               referrerPolicy="no-referrer"
               className="w-8 h-8 rounded-full object-cover border border-amber-500/30"

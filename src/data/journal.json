@@ -1,0 +1,49 @@
+{
+  "journal_entries": [
+    {
+      "id": "post-1",
+      "title": "Start-up imkerij: bijenhal\n",
+      "excerpt": "De imkerij is gelegen in een groene omgeving tussen gras en bloemenweide in het hartje van Oostham",
+      "content": "Hams bijtje.",
+      "date": "Jul 10, 2026",
+      "temp": "31°C",
+      "tag": "ZOMER",
+      "nectarSource": "CLOVER & BASSWOOD",
+      "image": "kasten_close_up",
+      "isFeatured": true
+    },
+    {
+      "id": "post-2",
+      "title": "Inspectie bijen",
+      "excerpt": "Gezondheid van de kast en zwermdrift in de kast wordt nagekeken.",
+      "content": "Lifting the lids after a long Vermont winter is always filled with nervous anticipation. Winter is a crucible for any apiary, and colony survival depends on a tight cluster, proper moisture management, and sufficient winter honey reserves.\n\nToday, as temperatures crossed a beautiful 56°F under a clear blue sky, I stepped into the apiary. Outside Hive B, workers were already darting into the sunshine, carrying small pellets of bright yellow pollen on their hind legs. A spectacular sight! This means the queen is laying and active brood rearing has begun.\n\nI cracked open the inner cover of Hive B. A warm, healthy odor of beeswax, honey, and propolis wafted into the air. Sliding out a center frame, I spotted the Queen — marked with a brilliant yellow dot on her thorax, indicating her lineage. She was surrounded by a court of attentive workers, moving deliberately across the comb.\n\nNearby cells were filled with pearly white, C-shaped larvae floating in royal jelly, surrounded by an outer ring of pollen (bee bread) and capped honey. The winter cluster had done its job. We survived the winter with zero colony losses. The season has officially begun.",
+      "date": "Apr 28, 2026",
+      "temp": "31°C",
+      "tag": "LENTE",
+      "nectarSource": "DANDELION & WILLOW",
+      "image": "inspectie_kast"
+    },
+    {
+      "id": "post-3",
+      "title": "The Goldenrod Rush and Winter Preparation",
+      "excerpt": "Autumn in the apiary is characterized by a frantic, bittersweet energy. The goldenrod is blooming, and it is our last honey flow.",
+      "content": "Autumn in the apiary is characterized by a frantic, bittersweet energy. The fields have turned a brilliant, blazing yellow as wild goldenrod and asters carpet the hillsides. This is our final major nectar flow of the year — a critical period where the bees gather the remaining fuel they need to survive the brutal cold ahead.\n\nIf you walk near the hives today, you'll notice a distinct, slightly pungent odor — often compared to wet socks or strong cheese. This is the characteristic smell of goldenrod nectar curing in the comb. The bees are actively fanning, driving off excess water weight until the moisture content drops below 18.6%, making it shelf-stable for the winter months.\n\nDuring today's inspection, I began preparing the hives for winter. I installed entrance reducers to keep out cold winds and curious field mice looking for a warm home. I also verified their food stores. A single Langstroth colony needs at least 70–80 lbs of capped honey to survive a northern winter. Hive A is well-stocked, but I will need to feed Hive D with thick sugar syrup (a 2:1 ratio) to help them build up their winter cluster reserves.",
+      "date": "Sep 14, 2025",
+      "temp": "68°F",
+      "tag": "HERFST",
+      "nectarSource": "GOLDENROD & ASTER",
+      "image": "weide_met_bloemen"
+    },
+    {
+      "id": "post-4",
+      "title": "Understanding Colony Democracy and Swarm Intelligence",
+      "excerpt": "How do 50,000 individual insects make a single, life-or-death decision? Deep inside the hive lies a lesson in collective wisdom.",
+      "content": "How do 50,000 individual insects make a single, life-or-death decision? Swarming is the natural reproduction of a honeybee colony. When a hive becomes overcrowded, the old queen and roughly half the workers depart in a spectacular cloud, leaving behind several queen cells to hatch and carry on the old colony.\n\nBut before they establish a new home, they gather in a temporary cluster on a nearby tree branch. From there, hundreds of scout bees fly out in all directions, scanning the landscape for suitable cavities — hollow trees, old barns, or empty boxes.\n\nWhen a scout finds a potential home, she returns to the swarm and performs a 'waggle dance' on the surface of the bee cluster. The intensity of her dance reflects the quality of the site. Other scouts observe her, fly out to inspect the site themselves, and if they agree, return to perform the same dance.\n\nOnce a critical quorum of scouts is reached at a single site, a signal ripples through the cluster. The swarm takes flight, moving with absolute unity to their new home. It is a flawless exercise in decentralized decision-making — one that human organizations could learn a great deal from.",
+      "date": "Jun 15, 2025",
+      "temp": "74°F",
+      "tag": "WINTER",
+      "nectarSource": "APPLE BLOSSOM",
+      "image": "bijen_aan_kast"
+    }
+  ]
+}

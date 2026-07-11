@@ -38,8 +38,8 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
   const [newTemp, setNewTemp] = useState("80°F");
   const [newNectar, setNewNectar] = useState("");
   const [newImages, setNewImages] = useState<string[]>([
-    IMAGES.journalMain,
-    IMAGES.beehivesField,
+    IMAGES.logo_rechthoek,
+    IMAGES.logo_rechthoek,
   ]);
 
   const isOwnerView = isOwnerHost();
@@ -86,7 +86,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
     setNewTag("ZOMER");
     setNewTemp("80°F");
     setNewNectar("");
-    setNewImages([IMAGES.journalMain, IMAGES.beehivesField]);
+    setNewImages([IMAGES.logo_rechthoek, IMAGES.logo_rechthoek]);
   };
 
   const openWriteModal = (post?: JournalPost | null) => {
@@ -189,16 +189,6 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
             </h2>
           </div>
 
-          {!isEmbed && isOwnerView && (
-            <button
-              id="btn-new-journal-entry"
-              onClick={() => openWriteModal(selectedPost)}
-              className="mt-6 md:mt-0 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-gold-100 font-medium text-xs tracking-wider uppercase rounded-full transition-all duration-300 flex items-center gap-2 border border-stone-800 shadow-md"
-            >
-              <PenTool size={14} className="text-gold-500" />
-              Schrijf Bericht
-            </button>
-          )}
 
           {isEmbed && onViewAll && (
             <button
@@ -241,7 +231,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
               {/* Image side */}
               <div className="md:w-1/2 relative min-h-[300px] overflow-hidden">
                 <img
-                  src={post.images?.[0] ?? post.image}
+                  src={IMAGES[post.images?.[0] ?? post.image]}
                   alt={post.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -301,7 +291,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                 <div>
                   <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-6">
                     <img
-                      src={post.images?.[0] ?? post.image}
+                      src={IMAGES[post.image]}
                       alt={post.title}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -364,7 +354,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
               {/* Image Header with close button */}
               <div className="relative h-[250px] md:h-[350px] flex-shrink-0">
                 <img
-                  src={selectedPost.images?.[0] ?? selectedPost.image}
+                  src={IMAGES[selectedPost.images?.[0] ?? selectedPost.image]}
                   alt={selectedPost.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
@@ -416,7 +406,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                     {selectedPost.images?.map((image, idx) => (
                       <img
                         key={`${selectedPost.id}-${idx}`}
-                        src={image}
+                        src={IMAGES[image]}
                         alt={`${selectedPost.title} ${idx + 1}`}
                         referrerPolicy="no-referrer"
                         className="w-full h-56 object-cover rounded-2xl border border-stone-200"

@@ -21,7 +21,7 @@ const fileToDataUrl = (file: File) =>
 export default function AtelierStory() {
   const [isOpen, setIsOpen] = useState(false);
   const [extraImage, setExtraImage] = useState<string | null>(null);
-  const extraImageOptions = [IMAGES.journalMain, IMAGES.productsCover, IMAGES.hero];
+  const extraImageOptions = [IMAGES.logo_rechthoek, IMAGES.logo_rechthoek, IMAGES.logo_rechthoek];
   const isOwnerView = isOwnerHost();
 
   const handleAddExtraImage = () => {
@@ -57,35 +57,12 @@ export default function AtelierStory() {
             className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-stone-200/50"
           >
             <img
-              src={IMAGES.beehivesField}
+              src={IMAGES.bloemenweide}
               alt="Hams bijtje Bijenkasten"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
             />
           </motion.div>
-
-          {isOwnerView && (
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <label className="flex cursor-pointer items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-stone-700 transition-colors hover:bg-stone-100">
-                <Plus size={14} />
-                Upload foto van computer
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(e) => handleUploadExtraImage(e.target.files?.[0] ?? null)}
-                />
-              </label>
-              <button
-                id="btn-add-extra-imkerij-image"
-                onClick={handleAddExtraImage}
-                className="flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-stone-700 transition-colors hover:bg-stone-100"
-              >
-                <Plus size={14} />
-                {extraImage ? "Wijzig extra foto" : "Voeg extra foto toe"}
-              </button>
-            </div>
-          )}
 
           {extraImage && (
             <motion.div
