@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import { Instagram, Facebook, Mail, MapPin } from "lucide-react";
+import { Instagram, Mail, MapPin } from "lucide-react";
 import { IMAGES } from "../data/defaultData";
 
 interface FooterProps {
@@ -93,31 +93,24 @@ export default function Footer({ setTab }: FooterProps) {
           <h4 className="text-[10px] tracking-[0.25em] text-stone-500 uppercase font-mono font-bold">
             Contact
           </h4>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-3">
             <a
               id="social-instagram"
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 bg-stone-900 hover:bg-stone-800 text-gold-100 rounded-full transition-colors border border-stone-800"
+              className="inline-flex items-center gap-2 rounded-full border border-stone-800 bg-stone-900 px-3 py-2 text-[11px] font-medium uppercase tracking-wider text-gold-100 transition-colors hover:bg-stone-800"
             >
               <Instagram size={14} />
-            </a>
-            <a
-              id="social-facebook"
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 bg-stone-900 hover:bg-stone-800 text-gold-100 rounded-full transition-colors border border-stone-800"
-            >
-              <Facebook size={14} />
+              Instagram
             </a>
             <a
               id="social-mail"
               href="mailto:kleeten6@gmail.com"
-              className="p-2.5 bg-stone-900 hover:bg-stone-800 text-gold-100 rounded-full transition-colors border border-stone-800"
+              className="inline-flex items-center gap-2 rounded-full border border-stone-800 bg-stone-900 px-3 py-2 text-[11px] font-medium uppercase tracking-wider text-gold-100 transition-colors hover:bg-stone-800"
             >
               <Mail size={14} />
+              E-mail
             </a>
           </div>
 

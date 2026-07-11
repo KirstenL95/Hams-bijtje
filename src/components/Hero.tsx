@@ -8,6 +8,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { JournalPost, Hive, HarvestRecord, HoneyProduct } from "../types";
 import { Compass, Thermometer, Calendar, X, Star, ArrowRight } from "lucide-react";
 import { IMAGES } from "../data/defaultData";
+import DecorativeBee from "./DecorativeBee";
+import beeMovingVideo from "../assets/images/BEEMOVING.mp4";
 
 interface HeroProps {
   currentTab: string;
@@ -56,11 +58,23 @@ export default function Hero({
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative w-full h-[85vh] min-h-[550px] md:min-h-[700px] rounded-[40px] overflow-hidden shadow-2xl flex flex-col justify-between p-8 md:p-16 lg:p-20 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/src/assets/images/macro_honeybee_1783634117381.jpg')",
-        }}
+        className="relative w-full h-[85vh] min-h-[550px] md:min-h-[700px] rounded-[40px] overflow-hidden shadow-2xl flex flex-col justify-between p-8 md:p-16 lg:p-20"
       >
+        {/* Decorative bees on the sides (artistic) */}
+        <div className="absolute left-4 top-10 hidden md:block">
+          <DecorativeBee className="w-[160px] opacity-90 bee-float bee-delay-1" />
+        </div>
+        <div className="absolute right-4 top-28 hidden md:block">
+          <DecorativeBee flip className="w-[200px] opacity-80 bee-float bee-delay-2 bee-float-slow" />
+        </div>
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src={beeMovingVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
         {/* Warm golden-dark overlay for beautiful contrast and readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/30" />
 
@@ -146,20 +160,20 @@ export default function Hero({
       </motion.div>
 
       {/* BRAND & INTRO SECTION (Spacious and elegant centered layout with the large rectangular logo as the clear centerpiece) */}
-      <section className="max-w-4xl mx-auto pt-8 pb-12 px-4 border-b border-stone-200/40 flex flex-col items-center justify-center text-center space-y-8">
+      <section className="max-w-6xl mx-auto pt-8 pb-12 px-4 border-b border-stone-200/40 flex flex-col items-center justify-center text-center space-y-8">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="flex-shrink-0 flex items-center justify-center w-full max-w-4xl"
+          className="flex-shrink-0 flex items-center justify-center w-full max-w-6xl"
         >
-          <div className="w-full max-w-[400px] bg-white rounded-full border border-stone-200/60 shadow-xl overflow-hidden p-4 md:p-6 aspect-square flex items-center justify-center hover:scale-[1.01] transition-transform duration-300 mx-auto">
+          <div className="w-full max-w-[640px] overflow-hidden rounded-none shadow-none aspect-[4/3] flex items-center justify-center hover:scale-[1.01] transition-transform duration-300 mx-auto bg-transparent">
             <img 
               src={IMAGES.logo} 
               alt="Hams bijtje Logo" 
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-contain object-center"
             />
           </div>
         </motion.div>

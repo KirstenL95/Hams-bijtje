@@ -7,14 +7,22 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { IMAGES } from "../data/defaultData";
 import { Plus, X } from "lucide-react";
+import DecorativeBee from "./DecorativeBee";
+import { isOwnerHost } from "../utils/owner";
+
+const fileToDataUrl = (file: File) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(new Error("Failed to read file"));
+    reader.readAsDataURL(file);
+  });
 
 export default function AtelierStory() {
   const [isOpen, setIsOpen] = useState(false);
   const [extraImage, setExtraImage] = useState<string | null>(null);
   const extraImageOptions = [IMAGES.journalMain, IMAGES.productsCover, IMAGES.hero];
-  const isOwnerView =
-    typeof window !== "undefined" &&
-    ["localhost", "127.0.0.1"].includes(window.location.hostname);
+  const isOwnerView = isOwnerHost();
 
   const handleAddExtraImage = () => {
     setExtraImage((current) => {
@@ -23,8 +31,21 @@ export default function AtelierStory() {
     });
   };
 
+  const handleUploadExtraImage = async (file: File | null) => {
+    if (!file) return;
+    const dataUrl = await fileToDataUrl(file);
+    setExtraImage(dataUrl);
+  };
+
   return (
-    <section id="atelier-section" className="py-24 bg-white px-6 border-t border-b border-stone-100">
+    <section id="atelier-section" className="py-24 bg-white px-6 border-t border-b border-stone-100 relative">
+      {/* Decorative bees for Onze Imkerij */}
+      <div className="absolute left-4 top-6 hidden md:block">
+        <DecorativeBee className="w-[140px] opacity-90 bee-float bee-delay-2" />
+      </div>
+      <div className="absolute right-4 bottom-6 hidden md:block">
+        <DecorativeBee flip className="w-[160px] opacity-85 bee-float bee-delay-3 bee-float-slow" />
+      </div>
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left image with styled border corners exactly like Image 4 */}
         <div className="col-span-12 lg:col-span-6 relative">
@@ -44,7 +65,17 @@ export default function AtelierStory() {
           </motion.div>
 
           {isOwnerView && (
-            <div className="mt-4 flex items-center gap-3">
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <label className="flex cursor-pointer items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-stone-700 transition-colors hover:bg-stone-100">
+                <Plus size={14} />
+                Upload foto van computer
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => handleUploadExtraImage(e.target.files?.[0] ?? null)}
+                />
+              </label>
               <button
                 id="btn-add-extra-imkerij-image"
                 onClick={handleAddExtraImage}

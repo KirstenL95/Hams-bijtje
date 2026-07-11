@@ -57,3 +57,28 @@ body {
   background: #d97706;
 }
 
+/* Decorative bee subtle floating animations */
+@keyframes bee-float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.bee-float {
+  animation: bee-float 3.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.bee-float-slow {
+  animation-duration: 4.6s;
+}
+
+.bee-float-fast {
+  animation-duration: 2.8s;
+}
+
+.bee-delay-1 { animation-delay: 0s; }
+.bee-delay-2 { animation-delay: 0.35s; }
+.bee-delay-3 { animation-delay: 0.8s; }
+
+

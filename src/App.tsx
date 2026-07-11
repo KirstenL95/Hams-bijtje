@@ -32,28 +32,57 @@ import Footer from "./components/Footer";
 export default function App() {
   const [tab, setTab] = useState<string>("home");
 
+  const readStoredState = <T,>(key: string, fallback: T): T => {
+    if (typeof window === "undefined") return fallback;
+    const saved = window.localStorage.getItem(key);
+    if (!saved) return fallback;
+
+    try {
+      return JSON.parse(saved) as T;
+    } catch {
+      return fallback;
+    }
+  };
+
   // Load state from localStorage or fallback to defaults
-  const [hives, setHives] = useState<Hive[]>(() => {
-    const saved = localStorage.getItem("apis_hives");
-    return DEFAULT_HIVES;
-  });
+  const [hives, setHives] = useState<Hive[]>(() => readStoredState("apis_hives", DEFAULT_HIVES));
 
-  const [inspections, setInspections] = useState<HiveInspection[]>(() => {
-    const saved = localStorage.getItem("apis_inspections");
-    return DEFAULT_INSPECTIONS;
-  });
+  const [inspections, setInspections] = useState<HiveInspection[]>(() =>
+    readStoredState("apis_inspections", DEFAULT_INSPECTIONS)
+  );
 
-  const [harvests, setHarvests] = useState<HarvestRecord[]>(() => {
-    const saved = localStorage.getItem("apis_harvests");
-    return DEFAULT_HARVESTS;
-  });
+  const [harvests, setHarvests] = useState<HarvestRecord[]>(() =>
+    readStoredState("apis_harvests", DEFAULT_HARVESTS)
+  );
 
-  const [journalPosts, setJournalPosts] = useState<JournalPost[]>(() => {
-    const saved = localStorage.getItem("apis_journal");
-    return DEFAULT_JOURNAL;
-  });
+  const [journalPosts, setJournalPosts] = useState<JournalPost[]>(() =>
+    readStoredState("apis_journal", DEFAULT_JOURNAL)
+  );
 
-  const [products] = useState<HoneyProduct[]>(DEFAULT_PRODUCTS);
+  const [products, setProducts] = useState<HoneyProduct[]>(() =>
+    readStoredState("apis_products", DEFAULT_PRODUCTS)
+  );
+  const [collectionSettings, setCollectionSettings] = useState(() => {
+    const saved = localStorage.getItem("apis_collection_settings");
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return {
+          title: "Ons Honingaanbod",
+          description:
+            "Eerste honingoogst zal plaatsvinden in 2027. Voor een potje honing kan je altijd even passeren langs de imkerij of een mailtje sturen voor meer info.",
+          badge: "Coming Soon 2027",
+        };
+      }
+    }
+    return {
+      title: "Ons Honingaanbod",
+      description:
+        "Eerste honingoogst zal plaatsvinden in 2027. Voor een potje honing kan je altijd even passeren langs de imkerij of een mailtje sturen voor meer info.",
+      badge: "Coming Soon 2027",
+    };
+  });
   const [cart, setCart] = useState<CartItem[]>([]);
 
   // Sync to localStorage
@@ -72,6 +101,14 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("apis_journal", JSON.stringify(journalPosts));
   }, [journalPosts]);
+
+  useEffect(() => {
+    localStorage.setItem("apis_products", JSON.stringify(products));
+  }, [products]);
+
+  useEffect(() => {
+    localStorage.setItem("apis_collection_settings", JSON.stringify(collectionSettings));
+  }, [collectionSettings]);
 
   // Cart operations
   const handleAddToCart = (product: HoneyProduct) => {
@@ -99,6 +136,22 @@ export default function App() {
 
   const handleClearCart = () => {
     setCart([]);
+  };
+
+  const handleUpdateCollectionSettings = (updates: Partial<typeof collectionSettings>) => {
+    setCollectionSettings((prev) => ({ ...prev, ...updates }));
+  };
+
+  const handleUpdateProduct = (productId: string, updates: Partial<HoneyProduct>) => {
+    setProducts((prev) => prev.map((product) => (product.id === productId ? { ...product, ...updates } : product)));
+  };
+
+  const handleAddProduct = (newProduct: Omit<HoneyProduct, "id">) => {
+    const created: HoneyProduct = {
+      ...newProduct,
+      id: `prod-${Date.now()}`,
+    };
+    setProducts((prev) => [created, ...prev]);
   };
 
   // State addition operations
@@ -213,6 +266,12 @@ export default function App() {
                 onClearCart={handleClearCart}
                 isEmbed={true}
                 onViewAll={() => setTab("vault")}
+                collectionTitle={collectionSettings.title}
+                collectionDescription={collectionSettings.description}
+                collectionBadge={collectionSettings.badge}
+                onUpdateCollectionSettings={handleUpdateCollectionSettings}
+                onUpdateProduct={handleUpdateProduct}
+                onAddProduct={handleAddProduct}
               />
             </motion.div>
           )}
@@ -245,6 +304,12 @@ export default function App() {
                 onAddToCart={handleAddToCart}
                 onUpdateCartQty={handleUpdateCartQty}
                 onClearCart={handleClearCart}
+                collectionTitle={collectionSettings.title}
+                collectionDescription={collectionSettings.description}
+                collectionBadge={collectionSettings.badge}
+                onUpdateCollectionSettings={handleUpdateCollectionSettings}
+                onUpdateProduct={handleUpdateProduct}
+                onAddProduct={handleAddProduct}
               />
             </motion.div>
           )}

@@ -6,8 +6,17 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { JournalPost } from "../types";
-import { Compass, Thermometer, Calendar, X, Tag, BookOpen, PenTool } from "lucide-react";
+import { Thermometer, Calendar, X, PenTool } from "lucide-react";
 import { IMAGES } from "../data/defaultData";
+import { isOwnerHost } from "../utils/owner";
+
+const fileToDataUrl = (file: File) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(new Error("Failed to read file"));
+    reader.readAsDataURL(file);
+  });
 
 interface JournalProps {
   posts: JournalPost[];
@@ -25,24 +34,47 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
   const [newTitle, setNewTitle] = useState("");
   const [newExcerpt, setNewExcerpt] = useState("");
   const [newContent, setNewContent] = useState("");
-  const [newTag, setNewTag] = useState("MID SUMMER");
-  const [newNectar, setNewNectar] = useState("CLOVER & BASSWOOD");
+  const [newTag, setNewTag] = useState("ZOMER");
   const [newTemp, setNewTemp] = useState("80°F");
+  const [newNectar, setNewNectar] = useState("");
   const [newImages, setNewImages] = useState<string[]>([
     IMAGES.journalMain,
     IMAGES.beehivesField,
   ]);
 
-  const isOwnerView =
-    typeof window !== "undefined" &&
-    ["localhost", "127.0.0.1"].includes(window.location.hostname);
+  const isOwnerView = isOwnerHost();
 
-  // Get unique tags
-  const tags = ["ALL", ...Array.from(new Set(posts.map((p) => p.tag)))];
+  // Season filter buttons shown directly in the logbook
+  const tags = ["ALL", "ZOMER", "LENTE", "HERFST", "WINTER"] as const;
+  const tagLabels: Record<(typeof tags)[number], string> = {
+    ALL: "Alle",
+    ZOMER: "Zomer",
+    LENTE: "Lente",
+    HERFST: "Herfst",
+    WINTER: "Winter",
+  };
+
+  const normalizeTag = (tag?: string) => {
+    const value = (tag || "").toUpperCase();
+    if (["ZOMER", "EARLY SUMMER", "MID SUMMER", "SUMMER"].includes(value)) return "ZOMER";
+    if (["LENTE", "SPRING", "SPRING BLOOM", "SPRINGTIME"].includes(value)) return "LENTE";
+    if (["HERFST", "AUTUMN", "LATE AUTUMN", "FALL"].includes(value)) return "HERFST";
+    if (["WINTER", "WINTERING"].includes(value)) return "WINTER";
+    return value;
+  };
+
+  const handleSeasonSelect = (tag: (typeof tags)[number]) => {
+    setSelectedTag(tag);
+    if (!isEmbed) {
+      requestAnimationFrame(() => {
+        document.getElementById("journal-post-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  };
 
   // Filter posts
   const filteredPosts =
-    selectedTag === "ALL" ? posts : posts.filter((p) => p.tag === selectedTag);
+    selectedTag === "ALL" ? posts : posts.filter((p) => normalizeTag(p.tag) === selectedTag);
 
   // If embedded in Home, we only show the featured/first post and a link to View All
   const displayPosts = isEmbed ? [posts[0]] : filteredPosts;
@@ -51,9 +83,9 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
     setNewTitle("");
     setNewExcerpt("");
     setNewContent("");
-    setNewTag("MID SUMMER");
-    setNewNectar("CLOVER & BASSWOOD");
+    setNewTag("ZOMER");
     setNewTemp("80°F");
+    setNewNectar("");
     setNewImages([IMAGES.journalMain, IMAGES.beehivesField]);
   };
 
@@ -66,8 +98,8 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
       setNewExcerpt(post.excerpt);
       setNewContent(post.content);
       setNewTag(post.tag);
-      setNewNectar(post.nectarSource);
       setNewTemp(post.temp);
+      setNewNectar(post.nectarSource ?? "");
       setNewImages([
         post.images?.[0] ?? post.image,
         post.images?.[1] ?? post.images?.[0] ?? post.image,
@@ -133,6 +165,16 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
     { label: "Artisanal Honey Jars", value: IMAGES.productsCover },
   ];
 
+  const handleImageUpload = async (index: 0 | 1, file: File | null) => {
+    if (!file) return;
+    const dataUrl = await fileToDataUrl(file);
+    setNewImages((prev) => {
+      const next = [...prev];
+      next[index] = dataUrl;
+      return next;
+    });
+  };
+
   return (
     <section id="journal-section" className="py-24 bg-white px-6">
       <div className="max-w-7xl mx-auto">
@@ -169,28 +211,26 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
           )}
         </div>
 
-        {/* Tags Filter (Only on full tab) */}
-        {!isEmbed && (
-          <div className="flex flex-wrap gap-2 mb-12">
-            {tags.map((tag) => (
-              <button
-                id={`tag-filter-${tag}`}
-                key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`px-4 py-1.5 rounded-full text-[11px] tracking-wider uppercase font-medium transition-all duration-300 ${
-                  selectedTag === tag
-                    ? "bg-gold-100 text-gold-900 font-semibold"
-                    : "text-stone-500 hover:text-stone-800 bg-stone-50 hover:bg-stone-100"
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
-        )}
+        {/* Season Filter */}
+        <div className="flex flex-wrap gap-2 mb-12">
+          {tags.map((tag) => (
+            <button
+              id={`tag-filter-${tag}`}
+              key={tag}
+              onClick={() => handleSeasonSelect(tag)}
+              className={`px-4 py-1.5 rounded-full text-[11px] tracking-wider uppercase font-medium transition-all duration-300 ${
+                selectedTag === tag
+                  ? "bg-gold-100 text-gold-900 font-semibold"
+                  : "text-stone-500 hover:text-stone-800 bg-stone-50 hover:bg-stone-100"
+              }`}
+            >
+              {tagLabels[tag]}
+            </button>
+          ))}
+        </div>
 
         {/* Featured Post (Image 2 representation) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+        <div id="journal-post-list" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
           {displayPosts.map((post) => (
             <div
               id={`featured-post-card-${post.id}`}
@@ -207,7 +247,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 <span className="absolute top-6 left-6 px-4 py-1 bg-stone-100/90 backdrop-blur-md text-[10px] text-stone-700 tracking-widest font-semibold uppercase rounded-full font-mono shadow-sm">
-                  {post.tag}
+                  {tagLabels[normalizeTag(post.tag) as keyof typeof tagLabels] ?? post.tag}
                 </span>
               </div>
 
@@ -233,7 +273,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                   </h3>
 
                   {/* Excerpt */}
-                  <p className="font-sans text-sm text-stone-500 leading-relaxed font-light">
+                  <p className="font-sans text-[14px] text-stone-500 leading-relaxed font-light">
                     {post.excerpt}
                   </p>
                 </div>
@@ -289,8 +329,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                   </p>
                 </div>
 
-                <div className="pt-6 mt-4 border-t border-stone-50 flex justify-between items-center text-[10px] font-mono tracking-wider">
-                  <span className="text-gold-600">{post.nectarSource}</span>
+                <div className="pt-6 mt-4 border-t border-stone-50 flex justify-end items-center text-[10px] font-mono tracking-wider">
                   <span className="text-stone-800 font-semibold group-hover:text-gold-500 transition-colors flex items-center gap-1">
                     Lezen <span className="font-sans text-xs">→</span>
                   </span>
@@ -489,11 +528,10 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                       onChange={(e) => setNewTag(e.target.value)}
                       className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:border-gold-500 focus:bg-white transition-all"
                     >
-                      <option value="MID SUMMER">Midden Zomer</option>
-                      <option value="EARLY SPRING">Vroeg Voorjaar</option>
-                      <option value="SPRING BLOOM">Lente Bloei</option>
-                      <option value="LATE AUTUMN">Late Herfst</option>
-                      <option value="WINTERING">Overwintering</option>
+                      <option value="ZOMER">Zomer</option>
+                      <option value="LENTE">Lente</option>
+                      <option value="HERFST">Herfst</option>
+                      <option value="WINTER">Winter</option>
                     </select>
                   </div>
 
@@ -511,19 +549,6 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
-                      Belangrijkste Nectarbron
-                    </label>
-                    <input
-                      id="input-entry-nectar"
-                      type="text"
-                      placeholder="bijv. KLAVER & LINDE"
-                      value={newNectar}
-                      onChange={(e) => setNewNectar(e.target.value)}
-                      className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:border-gold-500 focus:bg-white transition-all"
-                    />
-                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -531,30 +556,48 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                     <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
                       Foto 1 *
                     </label>
-                    <div className="grid grid-cols-3 gap-3">
-                      {imageOptions.map((opt, idx) => (
-                        <div
-                          key={`photo-1-${idx}`}
-                          onClick={() => setNewImages([opt.value, newImages[1]])}
-                          className={`cursor-pointer relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
-                            newImages[0] === opt.value
-                              ? "border-gold-600 ring-2 ring-gold-200"
-                              : "border-transparent opacity-60 hover:opacity-100"
-                          }`}
-                        >
-                          <img
-                            src={opt.value}
-                            alt={opt.label}
-                            referrerPolicy="no-referrer"
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-x-0 bottom-0 bg-black/60 p-1.5 text-center">
-                            <span className="text-[8px] text-white font-sans truncate block leading-tight">
-                              {opt.label}
-                            </span>
+                    <div className="space-y-3">
+                      <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-stone-700 transition-colors hover:bg-stone-100">
+                        <span>Upload foto van computer</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => handleImageUpload(0, e.target.files?.[0] ?? null)}
+                        />
+                      </label>
+                      <div className="grid grid-cols-3 gap-3">
+                        {imageOptions.map((opt, idx) => (
+                          <div
+                            key={`photo-1-${idx}`}
+                            onClick={() => setNewImages([opt.value, newImages[1]])}
+                            className={`cursor-pointer relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                              newImages[0] === opt.value
+                                ? "border-gold-600 ring-2 ring-gold-200"
+                                : "border-transparent opacity-60 hover:opacity-100"
+                            }`}
+                          >
+                            <img
+                              src={opt.value}
+                              alt={opt.label}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-x-0 bottom-0 bg-black/60 p-1.5 text-center">
+                              <span className="text-[8px] text-white font-sans truncate block leading-tight">
+                                {opt.label}
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
+                      {newImages[0] && (
+                        <img
+                          src={newImages[0]}
+                          alt="Preview foto 1"
+                          className="h-24 w-full rounded-xl border border-stone-200 object-cover"
+                        />
+                      )}
                     </div>
                   </div>
 
@@ -562,30 +605,48 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                     <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
                       Foto 2 *
                     </label>
-                    <div className="grid grid-cols-3 gap-3">
-                      {imageOptions.map((opt, idx) => (
-                        <div
-                          key={`photo-2-${idx}`}
-                          onClick={() => setNewImages([newImages[0], opt.value])}
-                          className={`cursor-pointer relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
-                            newImages[1] === opt.value
-                              ? "border-gold-600 ring-2 ring-gold-200"
-                              : "border-transparent opacity-60 hover:opacity-100"
-                          }`}
-                        >
-                          <img
-                            src={opt.value}
-                            alt={opt.label}
-                            referrerPolicy="no-referrer"
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-x-0 bottom-0 bg-black/60 p-1.5 text-center">
-                            <span className="text-[8px] text-white font-sans truncate block leading-tight">
-                              {opt.label}
-                            </span>
+                    <div className="space-y-3">
+                      <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-stone-700 transition-colors hover:bg-stone-100">
+                        <span>Upload foto van computer</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => handleImageUpload(1, e.target.files?.[0] ?? null)}
+                        />
+                      </label>
+                      <div className="grid grid-cols-3 gap-3">
+                        {imageOptions.map((opt, idx) => (
+                          <div
+                            key={`photo-2-${idx}`}
+                            onClick={() => setNewImages([newImages[0], opt.value])}
+                            className={`cursor-pointer relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                              newImages[1] === opt.value
+                                ? "border-gold-600 ring-2 ring-gold-200"
+                                : "border-transparent opacity-60 hover:opacity-100"
+                            }`}
+                          >
+                            <img
+                              src={opt.value}
+                              alt={opt.label}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-x-0 bottom-0 bg-black/60 p-1.5 text-center">
+                              <span className="text-[8px] text-white font-sans truncate block leading-tight">
+                                {opt.label}
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
+                      {newImages[1] && (
+                        <img
+                          src={newImages[1]}
+                          alt="Preview foto 2"
+                          className="h-24 w-full rounded-xl border border-stone-200 object-cover"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>

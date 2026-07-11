@@ -10,7 +10,7 @@ export const IMAGES = {
   journalMain: "/src/assets/images/hive2.jpg",
   productsCover: "/src/assets/images/honey_jars_1783630072899.jpg",
   beehivesField: "/src/assets/images/hive.jpg",
-  logo: "/src/assets/images/LogoHoning.jpg"
+  logo: "/src/assets/images/rectangle2.jpg"
 };
 
 export const DEFAULT_HIVES: Hive[] = [
@@ -200,7 +200,7 @@ I cracked open the inner cover of Hive B. A warm, healthy odor of beeswax, honey
 Nearby cells were filled with pearly white, C-shaped larvae floating in royal jelly, surrounded by an outer ring of pollen (bee bread) and capped honey. The winter cluster had done its job. We survived the winter with zero colony losses. The season has officially begun.`,
     date: "Apr 28, 2026",
     temp: "31°C",
-    tag: "ZOMER",
+    tag: "LENTE",
     nectarSource: "DANDELION & WILLOW",
     image: IMAGES.beehivesField
   },
@@ -215,7 +215,7 @@ If you walk near the hives today, you'll notice a distinct, slightly pungent odo
 During today's inspection, I began preparing the hives for winter. I installed entrance reducers to keep out cold winds and curious field mice looking for a warm home. I also verified their food stores. A single Langstroth colony needs at least 70–80 lbs of capped honey to survive a northern winter. Hive A is well-stocked, but I will need to feed Hive D with thick sugar syrup (a 2:1 ratio) to help them build up their winter cluster reserves.`,
     date: "Sep 14, 2025",
     temp: "68°F",
-    tag: "LATE AUTUMN",
+    tag: "HERFST",
     nectarSource: "GOLDENROD & ASTER",
     image: "/src/assets/images/hive2.jpg" // Reuse jars
   },
@@ -232,7 +232,7 @@ When a scout finds a potential home, she returns to the swarm and performs a 'wa
 Once a critical quorum of scouts is reached at a single site, a signal ripples through the cluster. The swarm takes flight, moving with absolute unity to their new home. It is a flawless exercise in decentralized decision-making — one that human organizations could learn a great deal from.`,
     date: "Jun 15, 2025",
     temp: "74°F",
-    tag: "EARLY SUMMER",
+    tag: "WINTER",
     nectarSource: "APPLE BLOSSOM",
     image: "/src/assets/images/hive2.jpg" // Reuse beekeeper
   }
@@ -241,7 +241,7 @@ Once a critical quorum of scouts is reached at a single site, a signal ripples t
 export const DEFAULT_PRODUCTS: HoneyProduct[] = [
   {
     id: "prod-1",
-    name: "",
+    name: "Lentehoning",
     subtitle: "Helder, verfijnd en tijdloos zoet.",
     description: "Geoogst uit onze kasten genesteld in de geurige witte klavervelden rond Ham. Deze honing is bijzonder licht van kleur en heeft een klassiek, delicaat zoet profiel. Perfect voor in de thee of over vers fruit.",
     size: "250g",

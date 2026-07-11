@@ -6,7 +6,17 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { HoneyProduct, CartItem } from "../types";
-import { ShoppingCart, ShoppingBag, X, Plus, Minus, Send, CheckCircle2, Star, Sparkles } from "lucide-react";
+import { ShoppingCart, ShoppingBag, X, Plus, Minus, Send, CheckCircle2, Star, Sparkles, PenTool } from "lucide-react";
+import DecorativeBee from "./DecorativeBee";
+import { isOwnerHost } from "../utils/owner";
+
+const fileToDataUrl = (file: File) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(new Error("Failed to read file"));
+    reader.readAsDataURL(file);
+  });
 
 interface HarvestVaultProps {
   products: HoneyProduct[];
@@ -16,6 +26,12 @@ interface HarvestVaultProps {
   onClearCart: () => void;
   isEmbed?: boolean;
   onViewAll?: () => void;
+  collectionTitle?: string;
+  collectionDescription?: string;
+  collectionBadge?: string;
+  onUpdateCollectionSettings?: (updates: { title?: string; description?: string; badge?: string }) => void;
+  onUpdateProduct?: (productId: string, updates: Partial<HoneyProduct>) => void;
+  onAddProduct?: (newProduct: Omit<HoneyProduct, "id">) => void;
 }
 
 export default function HarvestVault({
@@ -26,10 +42,25 @@ export default function HarvestVault({
   onClearCart,
   isEmbed = false,
   onViewAll,
+  collectionTitle = "Ons Honingaanbod",
+  collectionDescription = "Eerste honingoogst zal plaatsvinden in 2027. Voor een potje honing kan je altijd even passeren langs de imkerij of een mailtje sturen voor meer info.",
+  collectionBadge = "Coming Soon 2027",
+  onUpdateCollectionSettings,
+  onUpdateProduct,
 }: HarvestVaultProps) {
   const [selectedProduct, setSelectedProduct] = useState<HoneyProduct | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [isOwnerEditorOpen, setIsOwnerEditorOpen] = useState(false);
+  const [isAddProductOpen, setIsAddProductOpen] = useState(false);
+  const [ownerTitle, setOwnerTitle] = useState(collectionTitle);
+  const [ownerDescription, setOwnerDescription] = useState(collectionDescription);
+  const [ownerBadge, setOwnerBadge] = useState(collectionBadge);
+  const [editedProductImages, setEditedProductImages] = useState<Record<string, string>>(() =>
+    Object.fromEntries(products.map((product) => [product.id, product.image]))
+  );
+
+  const isOwnerView = isOwnerHost();
 
   // Form states for Pre-Order / Inquiry
   const [customerName, setCustomerName] = useState("");
@@ -39,6 +70,69 @@ export default function HarvestVault({
 
   const cartTotal = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleProductImageUpload = async (productId: string, file: File | null) => {
+    if (!file) return;
+    const dataUrl = await fileToDataUrl(file);
+    setEditedProductImages((prev) => ({ ...prev, [productId]: dataUrl }));
+  };
+
+  // Add product form states
+  const [newProdName, setNewProdName] = useState("");
+  const [newProdSubtitle, setNewProdSubtitle] = useState("");
+  const [newProdDesc, setNewProdDesc] = useState("");
+  const [newProdSize, setNewProdSize] = useState("");
+  const [newProdPrice, setNewProdPrice] = useState<number | "">("");
+  const [newProdStock, setNewProdStock] = useState<number | "">("");
+  const [newProdImage, setNewProdImage] = useState<string | null>(null);
+
+  const handleNewProductImage = async (file: File | null) => {
+    if (!file) return;
+    const url = await fileToDataUrl(file);
+    setNewProdImage(url);
+  };
+
+  const handleAddProductSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newProdName || newProdPrice === "" || newProdStock === "") return;
+
+    const newProduct: Omit<HoneyProduct, "id"> = {
+      name: newProdName,
+      subtitle: newProdSubtitle,
+      description: newProdDesc,
+      size: newProdSize || "250g",
+      price: typeof newProdPrice === "number" ? newProdPrice : Number(newProdPrice),
+      stock: typeof newProdStock === "number" ? newProdStock : Number(newProdStock),
+      image: newProdImage || "/src/assets/images/ZomerHoning.jpg",
+      nectarSources: [],
+      notes: "",
+    };
+
+    onAddProduct?.(newProduct);
+    // reset
+    setNewProdName("");
+    setNewProdSubtitle("");
+    setNewProdDesc("");
+    setNewProdSize("");
+    setNewProdPrice("");
+    setNewProdStock("");
+    setNewProdImage(null);
+    setIsAddProductOpen(false);
+  };
+
+  const handleSaveCollectionChanges = () => {
+    onUpdateCollectionSettings?.({
+      title: ownerTitle,
+      description: ownerDescription,
+      badge: ownerBadge,
+    });
+
+    Object.entries(editedProductImages).forEach(([productId, image]) => {
+      onUpdateProduct?.(productId, { image });
+    });
+
+    setIsOwnerEditorOpen(false);
+  };
 
   const handleCheckoutSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,8 +153,25 @@ export default function HarvestVault({
 
   const displayProducts = isEmbed ? products.slice(0, 3) : products;
 
+  React.useEffect(() => {
+    setOwnerTitle(collectionTitle);
+    setOwnerDescription(collectionDescription);
+    setOwnerBadge(collectionBadge);
+  }, [collectionTitle, collectionDescription, collectionBadge]);
+
+  React.useEffect(() => {
+    setEditedProductImages(Object.fromEntries(products.map((product) => [product.id, product.image])));
+  }, [products]);
+
   return (
     <section id="harvest-vault-section" className="py-24 bg-stone-50 px-6 relative">
+      {/* Decorative bees for Honingaanbod */}
+      <div className="absolute left-4 top-6 hidden md:block">
+        <DecorativeBee className="w-[120px] opacity-90 bee-float bee-delay-1" />
+      </div>
+      <div className="absolute right-4 bottom-6 hidden md:block">
+        <DecorativeBee flip className="w-[140px] opacity-85 bee-float bee-delay-2" />
+      </div>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-stone-200/60 pb-8">
@@ -69,14 +180,32 @@ export default function HarvestVault({
               De Collectie
             </p>
             <h2 className="font-serif text-3xl md:text-5xl text-stone-800 tracking-tight leading-none">
-              Ons Honingaanbod
+              {ownerTitle}
             </h2>
-            <p className="mt-4 text-stone-500 font-sans text-sm font-light max-w-xl leading-relaxed">
-              Eerste honingoogst zal plaatsvinden in 2027. Voor een potje honing kan je altijd even passeren langs de imkerij of een mailtje sturen voor meer info.
+            <p className="mt-4 text-stone-500 font-sans text-[14px] font-light max-w-xl leading-relaxed">
+              {ownerDescription}
             </p>
           </div>
 
-          
+          {isOwnerView && (
+            <button
+              id="btn-edit-collection"
+              onClick={() => setIsOwnerEditorOpen(true)}
+              className="mt-6 md:mt-0 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-gold-100 font-medium text-xs tracking-wider uppercase rounded-full transition-all duration-300 flex items-center gap-2 border border-stone-800 shadow-md"
+            >
+              <PenTool size={14} className="text-gold-500" />
+              Pas Collectie Aan
+            </button>
+          )}
+          {isOwnerView && (
+            <button
+              id="btn-add-product"
+              onClick={() => setIsAddProductOpen(true)}
+              className="mt-6 md:mt-0 ml-3 px-5 py-2.5 bg-gold-600 hover:bg-gold-500 text-stone-900 font-medium text-xs tracking-wider uppercase rounded-full transition-all duration-300 flex items-center gap-2 border border-amber-700 shadow-md"
+            >
+              Voeg Product Toe
+            </button>
+          )}
         </div>
 
         {/* Products Grid (matches Image 3 style!) */}
@@ -101,20 +230,78 @@ export default function HarvestVault({
 
                 {/* Title */}
                 <h3 className="font-serif text-xl md:text-2xl text-stone-800 leading-tight mb-2">
-                  {prod.name}
+                  {prod.name || (prod.id === "prod-1" ? "Lentehoning" : "")}
                 </h3>
               </div>
 
               {/* Action Button replaced with Coming Soon */}
               <div className="flex items-center justify-center mt-3 pt-4 border-t border-stone-200/40">
-                <span className="text-[10px] tracking-[0.25em] font-mono text-amber-600 font-bold uppercase">
-                  Coming Soon 2027
+                <span className="text-sm md:text-base tracking-[0.3em] font-mono text-amber-600 font-bold uppercase">
+                  {ownerBadge}
                 </span>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+        {/* Add Product Modal */}
+        <AnimatePresence>
+          {isAddProductOpen && (
+            <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsAddProductOpen(false)}
+                className="fixed inset-0 bg-stone-950/80 backdrop-blur-md"
+              />
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative bg-white max-w-xl w-full rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col max-h-[90vh]"
+              >
+                <div className="p-6 border-b border-stone-100 flex justify-between items-center">
+                  <h3 className="font-serif text-xl text-stone-800">Nieuw Product Toevoegen</h3>
+                  <button onClick={() => setIsAddProductOpen(false)} className="text-stone-400 hover:text-stone-600"><X size={18} /></button>
+                </div>
+
+                <form onSubmit={handleAddProductSubmit} className="overflow-y-auto p-6 md:p-8 space-y-4">
+                  <div>
+                    <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">Naam *</label>
+                    <input value={newProdName} onChange={(e) => setNewProdName(e.target.value)} required className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl" />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">Subtitel</label>
+                    <input value={newProdSubtitle} onChange={(e) => setNewProdSubtitle(e.target.value)} className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl" />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">Prijs *</label>
+                    <input type="number" value={newProdPrice as any} onChange={(e) => setNewProdPrice(Number(e.target.value))} required className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl" />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">Stock *</label>
+                    <input type="number" value={newProdStock as any} onChange={(e) => setNewProdStock(Number(e.target.value))} required className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl" />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">Afbeelding</label>
+                    <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-stone-700 transition-colors hover:bg-stone-100">
+                      Upload foto van computer
+                      <input type="file" accept="image/*" className="hidden" onChange={(e) => handleNewProductImage(e.target.files?.[0] ?? null)} />
+                    </label>
+                    {newProdImage && <div className="mt-3 w-40 h-40 rounded-lg overflow-hidden"><img src={newProdImage} className="w-full h-full object-cover" /></div>}
+                  </div>
+
+                  <div className="flex justify-end mt-4">
+                    <button type="submit" className="px-6 py-2 bg-gold-600 hover:bg-gold-500 text-stone-900 rounded-full font-medium">Voeg Toe</button>
+                  </div>
+                </form>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
       {/* Product Details Drawer */}
       <AnimatePresence>
@@ -234,6 +421,139 @@ export default function HarvestVault({
                 >
                   Sluit Details
                 </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Owner-only collection editor modal */}
+      <AnimatePresence>
+        {isOwnerEditorOpen && (
+          <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOwnerEditorOpen(false)}
+              className="fixed inset-0 bg-stone-950/80 backdrop-blur-md"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative bg-white max-w-2xl w-full rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col max-h-[90vh]"
+            >
+              <div className="p-6 border-b border-stone-100 bg-stone-50 flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <PenTool className="text-gold-600" size={18} />
+                  <h3 className="font-serif text-xl text-stone-800">
+                    Collectie Bewerken
+                  </h3>
+                </div>
+                <button
+                  id="btn-close-collection-editor"
+                  onClick={() => setIsOwnerEditorOpen(false)}
+                  className="text-stone-400 hover:text-stone-600 transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div className="overflow-y-auto p-6 md:p-8 space-y-6">
+                <div>
+                  <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
+                    Titel
+                  </label>
+                  <input
+                    type="text"
+                    value={ownerTitle}
+                    onChange={(e) => setOwnerTitle(e.target.value)}
+                    className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:border-gold-500 focus:bg-white transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
+                    Beschrijving
+                  </label>
+                  <textarea
+                    rows={4}
+                    value={ownerDescription}
+                    onChange={(e) => setOwnerDescription(e.target.value)}
+                    className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:border-gold-500 focus:bg-white transition-all font-sans leading-relaxed"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
+                    Badge / Status
+                  </label>
+                  <input
+                    type="text"
+                    value={ownerBadge}
+                    onChange={(e) => setOwnerBadge(e.target.value)}
+                    className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:border-gold-500 focus:bg-white transition-all"
+                  />
+                </div>
+
+                <div className="space-y-4 pt-4 border-t border-stone-100">
+                  <div>
+                    <h4 className="text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-3">
+                      Productfoto's
+                    </h4>
+                    <div className="space-y-4">
+                      {products.map((product) => (
+                        <div key={product.id} className="rounded-2xl border border-stone-200/60 p-4 bg-stone-50">
+                          <p className="text-sm font-serif text-stone-700 mb-3">{product.name || product.id}</p>
+                          <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-stone-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-stone-700 transition-colors hover:bg-stone-100 mb-3">
+                            <span>Upload foto van computer</span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={(e) => handleProductImageUpload(product.id, e.target.files?.[0] ?? null)}
+                            />
+                          </label>
+                          <input
+                            type="text"
+                            value={editedProductImages[product.id] || ""}
+                            onChange={(e) =>
+                              setEditedProductImages((prev) => ({ ...prev, [product.id]: e.target.value }))
+                            }
+                            placeholder="Of plak een afbeeldingspad of URL"
+                            className="w-full px-4 py-3 bg-white border border-stone-200 rounded-xl text-sm focus:outline-none focus:border-gold-500 transition-all"
+                          />
+                          {editedProductImages[product.id] && (
+                            <img
+                              src={editedProductImages[product.id]}
+                              alt={`Preview ${product.name || product.id}`}
+                              className="mt-3 h-24 w-full rounded-xl border border-stone-200 object-cover"
+                            />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-stone-100 flex justify-end gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setIsOwnerEditorOpen(false)}
+                    className="px-5 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors"
+                  >
+                    Annuleren
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSaveCollectionChanges}
+                    className="px-6 py-2.5 bg-gold-600 hover:bg-gold-500 text-stone-900 font-semibold rounded-full text-xs uppercase tracking-wider transition-colors shadow-md"
+                  >
+                    Opslaan
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>
