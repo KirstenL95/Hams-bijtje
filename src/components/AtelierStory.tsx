@@ -6,10 +6,22 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { IMAGES } from "../data/defaultData";
-import { X } from "lucide-react";
+import { Plus, X } from "lucide-react";
 
 export default function AtelierStory() {
   const [isOpen, setIsOpen] = useState(false);
+  const [extraImage, setExtraImage] = useState<string | null>(null);
+  const extraImageOptions = [IMAGES.journalMain, IMAGES.productsCover, IMAGES.hero];
+  const isOwnerView =
+    typeof window !== "undefined" &&
+    ["localhost", "127.0.0.1"].includes(window.location.hostname);
+
+  const handleAddExtraImage = () => {
+    setExtraImage((current) => {
+      const currentIndex = current ? extraImageOptions.indexOf(current) : -1;
+      return extraImageOptions[(currentIndex + 1) % extraImageOptions.length];
+    });
+  };
 
   return (
     <section id="atelier-section" className="py-24 bg-white px-6 border-t border-b border-stone-100">
@@ -30,6 +42,35 @@ export default function AtelierStory() {
               className="w-full h-full object-cover"
             />
           </motion.div>
+
+          {isOwnerView && (
+            <div className="mt-4 flex items-center gap-3">
+              <button
+                id="btn-add-extra-imkerij-image"
+                onClick={handleAddExtraImage}
+                className="flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-stone-700 transition-colors hover:bg-stone-100"
+              >
+                <Plus size={14} />
+                {extraImage ? "Wijzig extra foto" : "Voeg extra foto toe"}
+              </button>
+            </div>
+          )}
+
+          {extraImage && (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="mt-4 relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-stone-200/50"
+            >
+              <img
+                src={extraImage}
+                alt="Extra foto van Onze Imkerij"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          )}
         </div>
 
         {/* Right text details */}

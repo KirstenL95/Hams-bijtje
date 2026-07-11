@@ -6,29 +6,36 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { JournalPost } from "../types";
-import { Compass, Thermometer, Calendar, Plus, X, Tag, BookOpen, PenTool } from "lucide-react";
+import { Compass, Thermometer, Calendar, X, Tag, BookOpen, PenTool } from "lucide-react";
 import { IMAGES } from "../data/defaultData";
 
 interface JournalProps {
   posts: JournalPost[];
   onAddPost: (post: Omit<JournalPost, "id">) => void;
+  onUpdatePost?: (postId: string, post: Omit<JournalPost, "id">) => void;
   isEmbed?: boolean; // If shown in the home grid, render only a preview or link
   onViewAll?: () => void;
 }
 
-export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }: JournalProps) {
+export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = false, onViewAll }: JournalProps) {
   const [selectedPost, setSelectedPost] = useState<JournalPost | null>(null);
-  const [isWriteOpen, setIsWriteOpen] = useState(false);
   const [selectedTag, setSelectedTag] = useState<string>("ALL");
-
-  // State for new post form
+  const [isWriteOpen, setIsWriteOpen] = useState(false);
+  const [editingPostId, setEditingPostId] = useState<string | null>(null);
   const [newTitle, setNewTitle] = useState("");
   const [newExcerpt, setNewExcerpt] = useState("");
   const [newContent, setNewContent] = useState("");
   const [newTag, setNewTag] = useState("MID SUMMER");
   const [newNectar, setNewNectar] = useState("CLOVER & BASSWOOD");
   const [newTemp, setNewTemp] = useState("80°F");
-  const [newImage, setNewImage] = useState(IMAGES.journalMain);
+  const [newImages, setNewImages] = useState<string[]>([
+    IMAGES.journalMain,
+    IMAGES.beehivesField,
+  ]);
+
+  const isOwnerView =
+    typeof window !== "undefined" &&
+    ["localhost", "127.0.0.1"].includes(window.location.hostname);
 
   // Get unique tags
   const tags = ["ALL", ...Array.from(new Set(posts.map((p) => p.tag)))];
@@ -40,32 +47,83 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
   // If embedded in Home, we only show the featured/first post and a link to View All
   const displayPosts = isEmbed ? [posts[0]] : filteredPosts;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newTitle.trim() || !newContent.trim()) return;
-
-    onAddPost({
-      title: newTitle,
-      excerpt: newExcerpt || newContent.substring(0, 120) + "...",
-      content: newContent,
-      date: new Date().toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      }),
-      temp: newTemp,
-      tag: newTag,
-      nectarSource: newNectar,
-      image: newImage,
-    });
-
-    // Reset Form
+  const resetForm = () => {
     setNewTitle("");
     setNewExcerpt("");
     setNewContent("");
     setNewTag("MID SUMMER");
     setNewNectar("CLOVER & BASSWOOD");
     setNewTemp("80°F");
+    setNewImages([IMAGES.journalMain, IMAGES.beehivesField]);
+  };
+
+  const openWriteModal = (post?: JournalPost | null) => {
+    if (!isOwnerView) return;
+
+    if (post) {
+      setEditingPostId(post.id);
+      setNewTitle(post.title);
+      setNewExcerpt(post.excerpt);
+      setNewContent(post.content);
+      setNewTag(post.tag);
+      setNewNectar(post.nectarSource);
+      setNewTemp(post.temp);
+      setNewImages([
+        post.images?.[0] ?? post.image,
+        post.images?.[1] ?? post.images?.[0] ?? post.image,
+      ]);
+    } else {
+      setEditingPostId(null);
+      resetForm();
+    }
+
+    setIsWriteOpen(true);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTitle.trim() || !newContent.trim()) return;
+    if (!newImages[0] || !newImages[1]) return;
+
+    const selectedImages = newImages.filter(Boolean);
+    const existingPost = posts.find((post) => post.id === editingPostId);
+
+    if (editingPostId && onUpdatePost) {
+      onUpdatePost(editingPostId, {
+        title: newTitle,
+        excerpt: newExcerpt || newContent.substring(0, 120) + "...",
+        content: newContent,
+        date: existingPost?.date || new Date().toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }),
+        temp: newTemp,
+        tag: newTag,
+        nectarSource: newNectar,
+        image: selectedImages[0],
+        images: selectedImages,
+      });
+    } else {
+      onAddPost({
+        title: newTitle,
+        excerpt: newExcerpt || newContent.substring(0, 120) + "...",
+        content: newContent,
+        date: new Date().toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }),
+        temp: newTemp,
+        tag: newTag,
+        nectarSource: newNectar,
+        image: selectedImages[0],
+        images: selectedImages,
+      });
+    }
+
+    setEditingPostId(null);
+    resetForm();
     setIsWriteOpen(false);
   };
 
@@ -89,10 +147,10 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
             </h2>
           </div>
 
-          {!isEmbed && (
+          {!isEmbed && isOwnerView && (
             <button
               id="btn-new-journal-entry"
-              onClick={() => setIsWriteOpen(true)}
+              onClick={() => openWriteModal(selectedPost)}
               className="mt-6 md:mt-0 px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-gold-100 font-medium text-xs tracking-wider uppercase rounded-full transition-all duration-300 flex items-center gap-2 border border-stone-800 shadow-md"
             >
               <PenTool size={14} className="text-gold-500" />
@@ -143,7 +201,7 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
               {/* Image side */}
               <div className="md:w-1/2 relative min-h-[300px] overflow-hidden">
                 <img
-                  src={post.image}
+                  src={post.images?.[0] ?? post.image}
                   alt={post.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -203,7 +261,7 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                 <div>
                   <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-6">
                     <img
-                      src={post.image}
+                      src={post.images?.[0] ?? post.image}
                       alt={post.title}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -267,7 +325,7 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
               {/* Image Header with close button */}
               <div className="relative h-[250px] md:h-[350px] flex-shrink-0">
                 <img
-                  src={selectedPost.image}
+                  src={selectedPost.images?.[0] ?? selectedPost.image}
                   alt={selectedPost.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
@@ -313,10 +371,36 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                     <p key={idx}>{paragraph}</p>
                   ))}
                 </div>
+
+                {(selectedPost.images?.length ?? 0) > 1 && (
+                  <div className="mt-8 grid gap-4 md:grid-cols-2">
+                    {selectedPost.images?.map((image, idx) => (
+                      <img
+                        key={`${selectedPost.id}-${idx}`}
+                        src={image}
+                        alt={`${selectedPost.title} ${idx + 1}`}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-56 object-cover rounded-2xl border border-stone-200"
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Footer */}
-              <div className="p-6 border-t border-stone-100 bg-white flex justify-end">
+              <div className="p-6 border-t border-stone-100 bg-white flex justify-end gap-3">
+                {isOwnerView && (
+                  <button
+                    id="btn-edit-journal-footer"
+                    onClick={() => {
+                      setSelectedPost(null);
+                      openWriteModal(selectedPost);
+                    }}
+                    className="px-6 py-2 bg-gold-600 hover:bg-gold-500 text-stone-900 rounded-full font-medium text-xs tracking-wider uppercase transition-colors"
+                  >
+                    Bewerk Bericht
+                  </button>
+                )}
                 <button
                   id="btn-close-journal-footer"
                   onClick={() => setSelectedPost(null)}
@@ -334,7 +418,6 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
       <AnimatePresence>
         {isWriteOpen && (
           <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -343,7 +426,6 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
               className="fixed inset-0 bg-stone-950/80 backdrop-blur-md"
             />
 
-            {/* Modal Body */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -354,7 +436,7 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                 <div className="flex items-center gap-2">
                   <PenTool className="text-gold-600" size={18} />
                   <h3 className="font-serif text-xl text-stone-800">
-                    Nieuw Logboekbericht Ontwerpen
+                    {editingPostId ? "Logboekbericht Bewerken" : "Nieuw Logboekbericht Ontwerpen"}
                   </h3>
                 </div>
                 <button
@@ -367,7 +449,6 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
               </div>
 
               <form onSubmit={handleSubmit} className="overflow-y-auto p-6 md:p-8 space-y-6 flex-1">
-                {/* Title */}
                 <div>
                   <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
                     Titel *
@@ -383,7 +464,6 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                   />
                 </div>
 
-                {/* Excerpt */}
                 <div>
                   <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
                     Samenvatting
@@ -398,9 +478,7 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                   />
                 </div>
 
-                {/* Grid metadata */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* Tag */}
                   <div>
                     <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
                       Seizoen / Categorie
@@ -419,7 +497,6 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                     </select>
                   </div>
 
-                  {/* Temp */}
                   <div>
                     <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
                       Temperatuur
@@ -434,7 +511,6 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                     />
                   </div>
 
-                  {/* Nectar Source */}
                   <div>
                     <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
                       Belangrijkste Nectarbron
@@ -450,39 +526,70 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                   </div>
                 </div>
 
-                {/* Image Selection */}
-                <div>
-                  <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
-                    Omslagafbeelding
-                  </label>
-                  <div className="grid grid-cols-3 gap-3">
-                    {imageOptions.map((opt, idx) => (
-                      <div
-                        key={idx}
-                        onClick={() => setNewImage(opt.value)}
-                        className={`cursor-pointer relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
-                          newImage === opt.value
-                            ? "border-gold-600 ring-2 ring-gold-200"
-                            : "border-transparent opacity-60 hover:opacity-100"
-                        }`}
-                      >
-                        <img
-                          src={opt.value}
-                          alt={opt.label}
-                          referrerPolicy="no-referrer"
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-x-0 bottom-0 bg-black/60 p-1.5 text-center">
-                          <span className="text-[8px] text-white font-sans truncate block leading-tight">
-                            {opt.label}
-                          </span>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
+                      Foto 1 *
+                    </label>
+                    <div className="grid grid-cols-3 gap-3">
+                      {imageOptions.map((opt, idx) => (
+                        <div
+                          key={`photo-1-${idx}`}
+                          onClick={() => setNewImages([opt.value, newImages[1]])}
+                          className={`cursor-pointer relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                            newImages[0] === opt.value
+                              ? "border-gold-600 ring-2 ring-gold-200"
+                              : "border-transparent opacity-60 hover:opacity-100"
+                          }`}
+                        >
+                          <img
+                            src={opt.value}
+                            alt={opt.label}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 bg-black/60 p-1.5 text-center">
+                            <span className="text-[8px] text-white font-sans truncate block leading-tight">
+                              {opt.label}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
+                      Foto 2 *
+                    </label>
+                    <div className="grid grid-cols-3 gap-3">
+                      {imageOptions.map((opt, idx) => (
+                        <div
+                          key={`photo-2-${idx}`}
+                          onClick={() => setNewImages([newImages[0], opt.value])}
+                          className={`cursor-pointer relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                            newImages[1] === opt.value
+                              ? "border-gold-600 ring-2 ring-gold-200"
+                              : "border-transparent opacity-60 hover:opacity-100"
+                          }`}
+                        >
+                          <img
+                            src={opt.value}
+                            alt={opt.label}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 bg-black/60 p-1.5 text-center">
+                            <span className="text-[8px] text-white font-sans truncate block leading-tight">
+                              {opt.label}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Content */}
                 <div>
                   <label className="block text-[10px] tracking-widest font-mono text-stone-400 uppercase mb-2">
                     Logboek Inhoud *
@@ -498,12 +605,15 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                   />
                 </div>
 
-                {/* Submit button */}
                 <div className="pt-4 border-t border-stone-100 flex justify-end gap-3">
                   <button
                     id="btn-cancel-write"
                     type="button"
-                    onClick={() => setIsWriteOpen(false)}
+                    onClick={() => {
+                      setEditingPostId(null);
+                      resetForm();
+                      setIsWriteOpen(false);
+                    }}
                     className="px-5 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors"
                   >
                     Annuleren
@@ -513,7 +623,7 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
                     type="submit"
                     className="px-6 py-2.5 bg-gold-600 hover:bg-gold-500 text-stone-900 font-semibold rounded-full text-xs uppercase tracking-wider transition-colors shadow-md"
                   >
-                    Bericht Publiceren
+                    {editingPostId ? "Bericht Bijwerken" : "Bericht Publiceren"}
                   </button>
                 </div>
               </form>
@@ -521,6 +631,7 @@ export default function Journal({ posts, onAddPost, isEmbed = false, onViewAll }
           </div>
         )}
       </AnimatePresence>
+
     </section>
   );
 }

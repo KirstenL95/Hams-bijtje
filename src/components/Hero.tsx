@@ -69,11 +69,16 @@ export default function Hero({
 
         {/* Bottom Left: Title, Description and CTAs */}
         <div className="relative z-10 max-w-2xl mt-auto space-y-6 text-left">
-          <div className="space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="space-y-4"
+          >
             <h1 className="font-serif italic font-light text-5xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[1.05]">
               Hams bijtje
             </h1>
-          </div>
+          </motion.div>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-2">
             <button

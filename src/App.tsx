@@ -110,6 +110,12 @@ export default function App() {
     setJournalPosts((prev) => [created, ...prev]);
   };
 
+  const handleUpdatePost = (postId: string, updatedPost: Omit<JournalPost, "id">) => {
+    setJournalPosts((prev) =>
+      prev.map((post) => (post.id === postId ? { ...post, ...updatedPost, id: post.id } : post))
+    );
+  };
+
   const handleAddHive = (newHive: Omit<Hive, "id">) => {
     const created: Hive = {
       ...newHive,
@@ -195,6 +201,7 @@ export default function App() {
               <Journal
                 posts={journalPosts}
                 onAddPost={handleAddPost}
+                onUpdatePost={handleUpdatePost}
                 isEmbed={true}
                 onViewAll={() => setTab("journal")}
               />
@@ -219,7 +226,7 @@ export default function App() {
               transition={{ duration: 0.5 }}
               className="pt-16"
             >
-              <Journal posts={journalPosts} onAddPost={handleAddPost} />
+              <Journal posts={journalPosts} onAddPost={handleAddPost} onUpdatePost={handleUpdatePost} />
             </motion.div>
           )}
 

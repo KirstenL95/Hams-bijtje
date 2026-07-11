@@ -51,6 +51,7 @@ export interface JournalPost {
   tag: string; // e.g. MID SUMMER, SPRING BLOOM, WINTERING
   nectarSource: string; // e.g. CLOVER & BASSWOOD
   image: string;
+  images?: string[];
   isFeatured?: boolean;
 }
 
