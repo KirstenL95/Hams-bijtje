@@ -178,7 +178,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
   };
 
   return (
-    <section id="journal-section" className="py-24 bg-white px-6">
+    <section id="journal-section" className="py-24 bg-stone-50 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-stone-100 pb-8">
@@ -281,9 +281,9 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
         </div>
 
         {/* Other Posts Grid (Only shown on full tab) */}
-        {!isEmbed && filteredPosts.length > 1 && (
+        {isEmbed && filteredPosts.length > 1 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.slice(1).map((post) => (
+            {filteredPosts.slice(1,4).map((post) => (
               <div
                 id={`journal-post-card-${post.id}`}
                 key={post.id}

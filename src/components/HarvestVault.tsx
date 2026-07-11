@@ -163,13 +163,13 @@ export default function HarvestVault({
   }, [products]);
 
   return (
-    <section id="harvest-vault-section" className="py-24 bg-stone-50 px-6 relative">
+    <section id="harvest-vault-section" className="py-24 bg-white px-6 relative">
       {/* Decorative bees for Honingaanbod */}
       <div className="absolute left-4 top-6 hidden md:block">
         <DecorativeBee className="w-[120px] opacity-90 bee-float bee-delay-1" />
       </div>
       <div className="absolute right-4 bottom-6 hidden md:block">
-        <DecorativeBee flip className="w-[140px] opacity-85 bee-float bee-delay-2" />
+        <DecorativeBee flip className="w-[180px] opacity-85 bee-float bee-delay-2" />
       </div>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}

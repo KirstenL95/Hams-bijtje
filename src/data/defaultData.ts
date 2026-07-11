@@ -5,20 +5,7 @@
 
 import { Hive, HiveInspection, HarvestRecord, JournalPost, HoneyProduct } from "../types";
 
-import bij_closeup from "../assets/images/bij_closeup.jpg";
-import bijen_aan_kast from "../assets/images/bijen_aan_kast.jpg";
-import bloemenweide from "../assets/images/bloemenweide.jpg";
-import hoornaarval_voorkant from "../assets/images/hoornaarval_voorkant.jpg";
-import hoornaarval_zijkant from "../assets/images/hoornaarval_zijkant.jpg";
-import inspectie_kast from "../assets/images/inspectie_kast.jpg";
-import kasten_close_up from "../assets/images/kasten_close_up.jpg";
-import logo_lentehoning from "../assets/images/logo_lentehoning.jpg";
-import logo_rechthoek from "../assets/images/logo_rechthoek.png";
-import logo_rond from "../assets/images/logo_rond.jpg";
-import logo_zomerhoning from "../assets/images/logo_zomerhoning.jpg";
-import weide_met_bloemen from "../assets/images/weide_met_bloemen.jpg";
-
-const allImages:{[key:string]:object} = import.meta.glob(['../assets/images/*.jpeg', '../assets/images/*.jpg', '../assets/images/*.png'], { eager: true});
+const allImages:{[key:string]:object} = import.meta.glob(['../assets/images/*.jpeg', '../assets/images/*.jpg', '../assets/images/*.JPG', '../assets/images/*.png'], { eager: true});
 
 
 

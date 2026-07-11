@@ -113,7 +113,7 @@ export default function Hero({
         </div>
 
         {/* Bottom Right: Navigation Pill Container */}
-        <div className="absolute bottom-8 right-8 md:bottom-16 md:right-16 z-20">
+        <div className="absolute right-8 top-8 z-20">
           <div className="bg-stone-950/40 backdrop-blur-xl border border-white/10 p-1 px-1.5 rounded-full flex items-center gap-0.5 shadow-2xl">
             <button
               id="pill-nav-home"

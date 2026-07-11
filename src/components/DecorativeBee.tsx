@@ -6,13 +6,13 @@ interface DecorativeBeeProps {
 }
 
 export default function DecorativeBee({ className = "", flip = false }: DecorativeBeeProps) {
+  const scale = flip ? "scale (-1, 1)" : "scale (1, 1)"
   return (
     <div
       className={"pointer-events-none select-none " + className}
-      style={{ transform: flip ? "scaleX(-1)" : undefined }}
       aria-hidden="true"
     >
-      <svg width="220" height="120" viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="190" height="120" viewBox="0 0 220 120" fill="none" transform={scale} xmlns="http://www.w3.org/2000/svg">
         {/* Bee body */}
         <ellipse cx="44" cy="48" rx="26" ry="18" fill="#FFC130" stroke="#333" strokeWidth="2" />
         <path d="M22 42h44" stroke="#333" strokeWidth="6" strokeLinecap="round" />

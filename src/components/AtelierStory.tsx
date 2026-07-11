@@ -44,9 +44,9 @@ export default function AtelierStory() {
         <DecorativeBee className="w-[140px] opacity-90 bee-float bee-delay-2" />
       </div>
       <div className="absolute right-4 bottom-6 hidden md:block">
-        <DecorativeBee flip className="w-[160px] opacity-85 bee-float bee-delay-3 bee-float-slow" />
+        <DecorativeBee flip className="w-[180px] opacity-85 bee-float bee-delay-3 bee-float-slow" />
       </div>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="max-w-7xl mx-auto">
         {/* Left image with styled border corners exactly like Image 4 */}
         <div className="col-span-12 lg:col-span-6 relative">
           <motion.div
