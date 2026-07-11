@@ -76,6 +76,8 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
   const filteredPosts =
     selectedTag === "ALL" ? posts : posts.filter((p) => normalizeTag(p.tag) === selectedTag);
 
+  filteredPosts.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+
   // If embedded in Home, we only show the featured/first post and a link to View All
   const displayPosts = isEmbed ? [posts[0]] : filteredPosts;
 
@@ -291,7 +293,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                 <div>
                   <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-6">
                     <img
-                      src={IMAGES[post.image]}
+                      src={IMAGES[post.images?.[0] ?? post.image]}
                       alt={post.title}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

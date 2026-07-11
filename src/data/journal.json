@@ -5,19 +5,18 @@
       "title": "Start-up imkerij: bijenhal\n",
       "excerpt": "De imkerij is gelegen in een groene omgeving tussen gras en bloemenweide in het hartje van Oostham",
       "content": "De bijenhal bevindt zich in Oostham, op een rustige en groene locatie tussen bloemenweides, grasweides en de tuinen van het omliggende dorp. Deze gevarieerde omgeving biedt de honingbijen een waardevolle bron van nectar en stuifmeel gedurende verschillende periodes van het jaar.\n\nDe aanwezige bloemenweides zorgen voor een rijk voedselaanbod, terwijl ook de vele dorpstuinen een belangrijke bijdrage leveren aan de biodiversiteit. Door de variatie aan bloemen en planten in de omgeving vinden de bijen voldoende voedsel om sterke en gezonde volken op te bouwen en te onderhouden.\n\nDe ligging van de bijenhal in dit kleinschalige, landelijke landschap zorgt niet alleen voor een geschikte leefomgeving voor de honingbij, maar ondersteunt ook tal van andere bestuivende insecten en draagt zo bij aan het behoud van de lokale biodiversiteit.",
-      "date": "Jul 10, 2026",
+      "date": "22 june, 2026",
       "temp": "31°C",
       "tag": "ZOMER",
       "nectarSource": "CLOVER & BASSWOOD",
-      "image": "kasten_close_up",
-      "isFeatured": true
+      "image": "kasten_close_up"
     },
     {
       "id": "post-2",
       "title": "Inspectie bijen",
       "excerpt": "Gezondheid van de kast en zwermdrift in de kast wordt nagekeken.",
       "content": "De gezondheid van het bijenvolk wordt wekelijks zorgvuldig gecontroleerd. Tijdens deze controles wordt niet alleen de algemene toestand van de kolonie nagegaan, maar wordt er ook aandacht besteed aan mogelijke zwermdrift. Dit is een belangrijk aandachtspunt, aangezien bijen in de zomermaanden zeer actief zijn en de populatie snel kan groeien.\n\nIn juli bereikt de activiteit van de bijen een hoogtepunt. Er wordt volop gevlogen, nectar en stuifmeel verzameld en er wordt voortdurend gewerkt aan het in stand houden en uitbreiden van het volk. Net daarom is het essentieel om regelmatig de ontwikkeling van de kolonies op te volgen en tijdig in te grijpen wanneer er tekenen van stress, verzwakking of zwermneiging optreden.\n\nDe bijenkasten worden bij voorkeur in de ochtend gecontroleerd. Op dat moment zijn de temperaturen nog gematigder en wordt de verstoring van het bijenvolk beperkt. Bij het openen van een kast kan warmte verloren gaan, terwijl bijen zelf sterk afhankelijk zijn van een stabiel microklimaat binnen de kast. Een optimale temperatuur is noodzakelijk voor het goed functioneren van het volk, de ontwikkeling van het broed en de algemene gezondheid van de kolonie.\n\nDoor regelmatige controles en een zorgvuldige aanpak wordt ervoor gezorgd dat de bijenvolken ook tijdens de drukke zomerperiode sterk en gezond blijven.",
-      "date": "Jul 11, 2026",
+      "date": "Jul 01, 2026",
       "temp": "23°C",
       "tag": "ZOMER",
       "nectarSource": "DANDELION & WILLOW",
@@ -28,7 +27,7 @@
       "title": "Drukte aan de kast ",
       "excerpt": "Zomerdrukte",
       "content": "In juli heerst er een drukte van jewelste aan de bijenhal. Bij mooi weer vliegen de honingbijen massaal uit op zoek naar nectar en stuifmeel om hun volk te voeden. Deze periode is van levensbelang voor de ontwikkeling van het bijenvolk.\n\nMaar er loert gevaar. Ook de Aziatische hoornaar bereikt in deze periode haar hoogste activiteit. Ze jaagt op honingbijen, grijpt ze uit de lucht en brengt ze naar haar nest als voedsel voor de larven. Daarom is het belangrijk om de bijenvolken in deze maanden extra te beschermen en de Aziatische hoornaar gericht te bestrijden.",
-      "date": "Jul 11, 2026",
+      "date": "Jul 10, 2026",
       "temp": "32 °C",
       "tag": "ZOMER",
       "nectarSource": "GOLDENROD & ASTER",
@@ -43,7 +42,31 @@
       "temp": "31°C",
       "tag": "ZOMER",
       "nectarSource": "APPLE BLOSSOM",
-      "image": "hoornaar"
+      "images": ["hoornaar", "Hoornaar1","Hoornaar2"]
+    },
+    {
+      "id": "post-4",
+      "title": "Aziatische hoornaarval te verkrijgen @Hams bijtje",
+      "excerpt": "Aziatische hoornaarvallen",
+      "content": "Wil je zelf ook biijdragen aan het behoud en de beschrimng van de honingbij. Help dan mee deze invasieve exoot te bestrijden. Vallen zijn te verkrijgen @Hams bijtje.",
+      "date": "Jul 8, 2026",
+      "temp": "30°C",
+      "tag": "ZOMER",
+      "nectarSource": "APPLE BLOSSOM",
+      "images": ["hoornaarval_voorkant", "hoornaarval_zijkant"],
+      "isFeatured": true
+    },
+    {
+      "id": "post-4",
+      "title": "Aziatische hoornaarval te verkrijgen @Hams bijtje",
+      "excerpt": "aziatische hoornaarvallen",
+      "content": "Wil je zelf ook biijdragen aan het behoud en de beschrimng van de honingbij. Help dan mee deze invasieve exoot te bestrijden. Vallen zijn te verkrijgen @Hams bijtje.",
+      "date": "Jul 11 2026",
+      "temp": "30°C",
+      "tag": "ZOMER",
+      "nectarSource": "APPLE BLOSSOM",
+      "images": ["hoornaarval_voorkant", "hoornaarval_zijkant"],
+      "isFeatured": true
     }
   ]
 }
