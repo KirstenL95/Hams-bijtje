@@ -170,7 +170,7 @@ export default function Hero({
         >
           <div className="w-full max-w-[640px] overflow-hidden rounded-none shadow-none aspect-[4/3] flex items-center justify-center hover:scale-[1.01] transition-transform duration-300 mx-auto bg-transparent">
             <img 
-              src={IMAGES.logo_rechthoek} 
+              src={IMAGES.logo2} 
               alt="Hams bijtje Logo" 
               referrerPolicy="no-referrer"
               className="w-full h-full object-contain object-center"
