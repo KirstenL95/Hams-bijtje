@@ -43,7 +43,7 @@ export default function HarvestVault({
   onClearCart,
   isEmbed = false,
   onViewAll,
-  collectionTitle = "Honingaanbod",
+  collectionTitle = "Producten",
   collectionDescription = "Eerste honingoogst zal plaatsvinden in 2027. Voor een potje honing kan je altijd even passeren langs de imkerij of een mailtje sturen voor meer info.",
   collectionBadge = "Coming Soon 2027",
   onUpdateCollectionSettings,
