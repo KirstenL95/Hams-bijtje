@@ -20,7 +20,7 @@
       "temp": "23°C",
       "tag": "ZOMER",
       "nectarSource": "DANDELION & WILLOW",
-      "image": "inspectie_kast"
+      "images": ["control1","controle2","controle3"],
     },
     {
       "id": "post-3",
@@ -31,7 +31,7 @@
       "temp": "32 °C",
       "tag": "ZOMER",
       "nectarSource": "GOLDENROD & ASTER",
-      "image": "bijen_aan_kast"
+      "images": ["activiteit","activiteit2"],
     },
     {
       "id": "post-4",
@@ -73,8 +73,8 @@
       "tag": "ZOMER",
       "nectarSource": "APPLE BLOSSOM",
       "images": [
-        "drinken1",
-        "drinken2"
+        "drinken",
+        "drinken3"
       ],
       "isFeatured": true
     }
