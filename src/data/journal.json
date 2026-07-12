@@ -20,7 +20,11 @@
       "temp": "23°C",
       "tag": "ZOMER",
       "nectarSource": "DANDELION & WILLOW",
-      "images": ["control1","controle2","controle3"]
+      "images": [
+        "controle2",
+        "inspectie_kast",
+        "controle3"
+      ]
     },
     {
       "id": "post-3",
@@ -31,7 +35,10 @@
       "temp": "32 °C",
       "tag": "ZOMER",
       "nectarSource": "GOLDENROD & ASTER",
-      "images": ["activiteit","activiteit2"]
+      "images": [
+        "activiteit2",
+        "bijen_aan_kast"
+      ]
     },
     {
       "id": "post-4",
@@ -49,7 +56,7 @@
       ]
     },
     {
-      "id": "post-4",
+      "id": "post-5",
       "title": "Aziatische hoornaarval te verkrijgen @Hams bijtje",
       "excerpt": "Aziatische hoornaarvallen",
       "content": "Wil je zelf ook bijdragen aan het behoud en de bescherming van de honingbij? Help dan mee om de invasieve Aziatische hoornaar te bestrijden. Vallen zijn verkrijgbaar bij Hams Bijtje aan democratische prijs.",
@@ -64,7 +71,7 @@
       "isFeatured": true
     },
     {
-      "id": "post-4",
+      "id": "post-6",
       "title": "Warm weer? Ook de bijen zoeken verkoeling!",
       "excerpt": "Verkoeling aan de lokale vijver",
       "content": "Op warme zomerdagen hebben honingbijen veel water nodig. Vandaag werden onze bijen gespot aan een lokale vijver, waar ze handig op een lelieblad landden om veilig water te verzamelen. Met kleine druppeltjes vliegen ze vervolgens terug naar de bijenkast.\n\nDat water is van levensbelang. De bijen gebruiken het niet alleen om zelf te drinken, maar ook om hun kast af te koelen. Ze verspreiden de waterdruppels in de kast en ventileren met hun vleugels, waardoor het water verdampt en de temperatuur rond de 35 °C blijft. Die constante temperatuur is essentieel voor de ontwikkeling van het broed.\n\nEen prachtig staaltje teamwork en een indrukwekkend voorbeeld van de ingenieuze manier waarop honingbijen zich aanpassen aan warme zomerdagen.",
@@ -75,6 +82,21 @@
       "images": [
         "drinken",
         "drinken3"
+      ],
+      "isFeatured": true
+    },
+    {
+      "id": "post-7",
+      "title": "De bijen zijn nog volop stuifmeel aan het verzamelen",
+      "excerpt": "Stuifmeel: de onmisbare bouwstof voor een sterk bijenvolk",
+      "content": "De bijen zijn nog volop stuifmeel aan het verzamelen. Van 's morgens vroeg vliegen ze van bloem naar bloem, op zoek naar nectar en stuifmeel. Aan hun achterpoten zijn de kleurrijke stuifmeelkorfjes vaak goed zichtbaar wanneer ze terugkeren naar de kast.\n\nHet verzamelde stuifmeel is een belangrijke voedselbron voor het bijenvolk en wordt gebruikt om de jonge bijen groot te brengen. Tegelijkertijd zorgen de bijen tijdens hun zoektocht voor de bestuiving van talloze bloemen, fruitbomen en andere gewassen. Zo leveren ze een onmisbare bijdrage aan de natuur en aan onze voedselvoorziening.\n\nZolang er voldoende bloemen bloeien en de weersomstandigheden gunstig zijn, blijven de bijen ijverig aan het werk.",
+      "date": "Jul 12, 2026",
+      "temp": "26 °C",
+      "tag": "ZOMER",
+      "nectarSource": "APPLE BLOSSOM",
+      "images": [
+        "control1",
+        "activiteit"
       ],
       "isFeatured": true
     }

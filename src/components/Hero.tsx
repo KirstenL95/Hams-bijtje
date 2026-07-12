@@ -153,7 +153,7 @@ export default function Hero({
                   : "text-stone-300 hover:text-white"
               }`}
             >
-              Honingaanbod
+              Producten
             </button>
           </div>
         </div>

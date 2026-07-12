@@ -82,7 +82,7 @@ export default function Footer({ setTab }: FooterProps) {
                 onClick={() => setTab("vault")}
                 className="hover:text-gold-500 transition-colors"
               >
-                Honingaanbod
+                Producten
               </button>
             </li>
           </ul>
