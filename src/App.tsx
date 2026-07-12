@@ -70,7 +70,7 @@ export default function App() {
         return JSON.parse(saved);
       } catch {
         return {
-          title: "Ons Honingaanbod",
+          title: "Honingaanbod",
           description:
             "Eerste honingoogst zal plaatsvinden in 2027. Voor een potje honing kan je altijd even passeren langs de imkerij of een mailtje sturen voor meer info.",
           badge: "Coming Soon 2027",
@@ -78,7 +78,7 @@ export default function App() {
       }
     }
     return {
-      title: "Ons Honingaanbod",
+      title: "Honingaanbod",
       description:
         "Eerste honingoogst zal plaatsvinden in 2027. Voor een potje honing kan je altijd even passeren langs de imkerij of een mailtje sturen voor meer info.",
       badge: "Coming Soon 2027",
@@ -329,7 +329,7 @@ export default function App() {
           >
             {[
               { id: "home", label: "Home" },
-              { id: "atelier", label: "Onze imkerij" },
+              { id: "atelier", label: "De imkerij" },
               { id: "journal", label: "Logboek" },
               { id: "vault", label: "Honingaanbod" },
             ].map((item) => (

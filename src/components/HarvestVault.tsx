@@ -43,7 +43,7 @@ export default function HarvestVault({
   onClearCart,
   isEmbed = false,
   onViewAll,
-  collectionTitle = "Ons Honingaanbod",
+  collectionTitle = "Honingaanbod",
   collectionDescription = "Eerste honingoogst zal plaatsvinden in 2027. Voor een potje honing kan je altijd even passeren langs de imkerij of een mailtje sturen voor meer info.",
   collectionBadge = "Coming Soon 2027",
   onUpdateCollectionSettings,
@@ -833,7 +833,7 @@ export default function HarvestVault({
                       Referentie: <span className="font-mono font-bold text-stone-800">HB-RES-{Math.floor(1000 + Math.random() * 9000)}</span>
                     </p>
                     <p className="leading-relaxed mt-1">
-                      Onze imker neemt spoedig contact met je op om de verpakking en levering af te stemmen.
+                      De imker neemt spoedig contact met je op om de verpakking en levering af te stemmen.
                     </p>
                   </div>
 

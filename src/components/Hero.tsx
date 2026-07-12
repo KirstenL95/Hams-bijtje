@@ -131,7 +131,7 @@ export default function Hero({
               onClick={handleScrollToAtelier}
               className="px-4 py-2 rounded-full text-[10px] md:text-[11px] font-bold tracking-widest uppercase transition-all text-stone-300 hover:text-white"
             >
-              Onze imkerij
+              De imkerij
             </button>
             <button
               id="pill-nav-journal"
@@ -183,7 +183,7 @@ export default function Hero({
             Imkerij <span className="italic font-normal text-amber-600">Hams bijtje</span>
           </h2>
           <p className="font-serif italic text-lg md:text-2xl lg:text-3xl text-stone-800 leading-[1.5] font-light tracking-tight max-w-2xl mx-auto">
-            “Gedreven door liefde voor de natuur en respect voor het leven van de bij, wordt er elke dag aan het behoud van gezonde bijenvolken en biodiversiteit.”
+            “Gedreven door liefde voor de natuur en respect voor het leven van de bij, wordt er elke dag gewerkt aan het behoud van gezonde bijenvolken en biodiversiteit.”
           </p>
         </div>
       </section>
