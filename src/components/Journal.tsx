@@ -41,6 +41,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
     IMAGES.logo_rechthoek,
     IMAGES.logo_rechthoek,
   ]);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const isOwnerView = isOwnerHost();
 
@@ -280,7 +281,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
           ))}
         </div>
 
-        {/* Other Posts Grid (Only shown on full tab) */}
+        {/* Other Posts Grid (shown on main page) */}
         {isEmbed && filteredPosts.length > 1 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.slice(1,4).map((post) => (
@@ -361,7 +362,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 to-transparent" onClick={() => setSelectedImage(IMAGES[selectedPost.images?.[0] ?? selectedPost.image])} />
                 <button
                   id="btn-close-journal-modal"
                   onClick={() => setSelectedPost(null)}
@@ -412,6 +413,7 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                         alt={`${selectedPost.title} ${idx + 1}`}
                         referrerPolicy="no-referrer"
                         className="w-full h-56 object-cover rounded-2xl border border-stone-200"
+                        onClick={() => setSelectedImage(IMAGES[image])}
                       />
                     ))}
                   </div>
@@ -428,6 +430,34 @@ export default function Journal({ posts, onAddPost, onUpdatePost, isEmbed = fals
                   Sluit Bericht
                 </button>
               </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      
+      <AnimatePresence>
+        {selectedImage && (
+          <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              className="fixed inset-0 bg-stone-950/80 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative bg-white max-w-6xl w-full rounded-3xl overflow-hidden shadow-2xl z-10 p-6 md:p-10"
+            >
+              <img
+                src={selectedImage}
+                alt="Grote weergave van de afbeelding"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover rounded-2xl"
+              />
             </motion.div>
           </div>
         )}

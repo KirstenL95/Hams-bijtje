@@ -20,7 +20,7 @@
       "temp": "23°C",
       "tag": "ZOMER",
       "nectarSource": "DANDELION & WILLOW",
-      "images": ["control1","controle2","controle3"],
+      "images": ["control1","controle2","controle3"]
     },
     {
       "id": "post-3",
@@ -31,7 +31,7 @@
       "temp": "32 °C",
       "tag": "ZOMER",
       "nectarSource": "GOLDENROD & ASTER",
-      "images": ["activiteit","activiteit2"],
+      "images": ["activiteit","activiteit2"]
     },
     {
       "id": "post-4",
