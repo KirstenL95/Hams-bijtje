@@ -89,7 +89,7 @@ export default function AtelierStory() {
 
           <h2 className="font-serif text-2xl md:text-3.5xl text-stone-800 tracking-tight leading-relaxed font-light">
             De imkerij gelegen in Oostham. <br />
-            <span className="italic font-normal text-amber-600"></span> Gelegen in het groen tussen bloemenvelden en weide.
+            <span className="italic font-normal text-amber-600"></span> Gelegen in het groen tussen bloemenvelden, weides en de Hamse tuintjes.
           </h2>
 
           <div className="pt-4">
@@ -146,7 +146,7 @@ export default function AtelierStory() {
               {/* Story prose */}
               <div className="space-y-4 text-stone-600 text-sm font-light leading-relaxed font-sans">
                 <p>
-                  Hams Bijtje is een kleinschalige hobby-imkerij in Oostham, waar passie voor bijen en respect voor de natuur centraal staan. De bijenkasten staan midden in het groen, tussen wilde bloemen en weides, waar de bijen in alle rust kunnen floreren.
+                  Hams Bijtje is een kleinschalige hobby-imkerij in Oostham, waar passie voor bijen en respect voor de natuur centraal staan. De bijenkasten staan midden in het groen, tussen bloemenvelden, weides en de Hamse tuintjes, waar de bijen in alle rust kunnen floreren.
                 </p>
               </div>
 
