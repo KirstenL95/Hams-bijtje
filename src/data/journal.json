@@ -117,6 +117,37 @@
         "zonnebloem5"
       ],
       "isFeatured": true
+    },
+    {
+      "id": "post-10",
+      "title": "🐝 Jonge bijenvolken winterklaar maken! ❄️",
+      "excerpt": "Inwinteren van de bijen",
+      "content": "Ook al lijkt de zomer nog volop bezig, de bijen zijn ondertussen al druk bezig met de voorbereiding op de winter. 🐝❄️\n\nBinnenkort worden de winterbijen geboren. Deze bijen leven veel langer dan de zomerbijen en zijn speciaal aangepast om de kolonie tijdens de koude maanden in leven te houden.\n\nHoog tijd dus om onze jonge bijenvolken goed in te winteren en ervoor te zorgen dat ze voldoende voorraad hebben om de winter sterk door te komen.\n\nDaarom voeren we ze bij met suikervloeistof. De bijen nemen de siroop op, verwerken de suikers en slaan de voorraad op in de raten. Zo beschikken ze tijdens de winter over voldoende energie wanneer er buiten weinig voedsel te vinden is.",
+      "date": "Aug 11, 2026",
+      "temp": "23 °C",
+      "tag": "ZOMER",
+      "nectarSource": "APPLE BLOSSOM",
+      "images": [
+        "voeder1",
+        "voeder"
+      ],
+      "isFeatured": true
+    },
+    {
+      "id": "post-11",
+      "title": "🐝 Een baard aan de kast? Geen zorgen, de bijen zijn aan het afkoelen! ☀️",
+      "excerpt": "Baardvorming",
+      "content": "Tijdens deze hittegolf verzamelen de bijen zich voor de opening van de kast. Dit noemen we baardvorming. Het lijkt alsof de bijen een baard vormen aan de vliegplank, maar eigenlijk zijn ze hard aan het werk om de temperatuur in de kast onder controle te houden.\n\nDoor buiten de kast te gaan hangen, maken ze binnen ruimte vrij en kan de lucht beter circuleren. Andere bijen zorgen ondertussen voor ventilatie door met hun vleugels lucht door de kast te blazen. 💨🐝\n\nBij hoge temperaturen kunnen de bijen ook water halen en dit in de kast verspreiden. Door verdamping helpt dat om de kast verder af te koelen.\n\nEen indrukwekkend staaltje samenwerking dus! ❤️🐝",
+      "date": "13 Aug , 2026",
+      "temp": "35 °C",
+      "tag": "ZOMER",
+      "nectarSource": "APPLE BLOSSOM",
+      "images": [
+        "baardvorming",
+        "baardvorming3",
+        "baardvorming1"
+      ],
+      "isFeatured": true
     }
   ]
 }
