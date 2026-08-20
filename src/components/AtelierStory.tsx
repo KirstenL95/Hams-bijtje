@@ -89,7 +89,7 @@ export default function AtelierStory() {
 
           <h2 className="font-serif text-2xl md:text-3.5xl text-stone-800 tracking-tight leading-relaxed font-light">
             De imkerij gelegen in Oostham. <br />
-            <span className="italic font-normal text-amber-600"></span> Gelegen in het groen tussen bloemenvelden, weides en de Hamse tuintjes.
+            <span className="italic font-normal text-amber-600"></span> Midden in het groen, tussen bloemenvelden, weilanden en de Hamse tuintjes.
           </h2>
 
           <div className="pt-4">
