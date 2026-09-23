@@ -148,6 +148,21 @@
         "baardvorming1"
       ],
       "isFeatured": true
+    },
+    {
+      "id": "post-12",
+      "title": "🐝 Nog even genieten van de herfstzon 🍂 ",
+      "excerpt": "🍂 Daar komt de herfst!",
+      "content": "De dagen worden korter, de temperaturen dalen en stilaan kondigt de herfst zich aan. Ook onze bijen merken dat de zomer voorbij is. 🐝\n\nToch zijn ze maar wat blij met de laatste warme zonnestraaltjes! Door de relatief hoge temperaturen is er nog heel wat vliegverkeer rond de kast. De bijen trekken er nog op uit om de laatste beschikbare nectar en stuifmeel te verzamelen.\n\nLangzaam maar zeker gaan de bijenvolken in rust. De koningin vermindert haar leg en het volk bereidt zich voor op de komende winter. De bijen zullen steeds meer dicht bij elkaar blijven om samen de warmte in de kast te bewaren.\n\nVoorlopig genieten ze dus nog volop van die mooie zonnige herfstdagen. 🌞🐝🍂",
+      "date": "Sep 23, 2026",
+      "temp": "17 °C",
+      "tag": "HERFST",
+      "nectarSource": "APPLE BLOSSOM",
+      "images": [
+        "herfst1",
+        "herfst2"
+      ],
+      "isFeatured": true
     }
   ]
 }
