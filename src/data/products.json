@@ -49,15 +49,15 @@
       ],
       "notes": "Zachte bloemige tonen met een lichte, boterachtige afdronk en een vleugje bosbessen."
     },
-     {
+    {
       "id": "prod-4",
       "name": "Bijen voederbak",
-      "subtitle": "3D-geprinte bijenvoederbak te verkrijgen ",
+      "subtitle": "3D geprinte bijenvoederbak te verkrijgen",
       "description": "Onze kenmerkende honing, met de hand koud geslingerd in kleine batches. Deze rauwe, pure honing weerspiegelt de diverse wilde bloemen die in de vroege zomer bloeien in onze weiden in Ham. Rijk, complex en heerlijk bloemig.",
       "size": "250g",
       "price": 10,
       "stock": 18,
-      "image": "voederbak1",
+      "image": "voederbak2",
       "nectarSources": [
         "Klaver",
         "Guldenroede",
